@@ -29,6 +29,11 @@ module.exports = (res) => {
                 clickedInfoUser: clickedUserInfo,
                 infoUser: infoUser,
             })
+
+            socket.broadcast.emit("SERVER_RETURN_USER_ID", {
+                userId: userId,
+                clickedInfoUser: clickedUserInfo,
+            })
         })
     })
 
@@ -53,7 +58,7 @@ module.exports = (res) => {
             })
             
             socket.broadcast.emit("SERVER_RETURN_CANCEL_FRIEND", {
-                clickedUserInfo: clickedUserInfo,
+                clickedInfoUser: clickedUserInfo,
                 userId: userId, 
             })
 
