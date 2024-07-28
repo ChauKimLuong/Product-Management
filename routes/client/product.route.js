@@ -4,6 +4,6 @@ const controller = require("../../controllers/client/products.controller")
 
 router.get("/", controller.index)
 router.get("/edit", controller.edit)
-router.get("/creat", controller.creat)
+router.get("/create", controller.create)
 
 module.exports = router

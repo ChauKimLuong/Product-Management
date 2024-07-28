@@ -1,13 +1,23 @@
 const express = require("express")
-const route = require("./routes/client/index.route.js")
-
 const app = express()
-const port = 3000
+
+const route = require("./routes/client/index.route.js")
+route(app)
+
+require("dotenv").config() // Trước Database 
+const port = process.env.PORT
+
+const database = require("./config/database")
+database.connect()
+
+
+
+
+
 
 app.set("views", "./views")
 app.set("view engine", "pug")
 
-// Route
-route(app)
- 
+app.use(express.static("public"))
+
 app.listen(port, () => console.log(`Example app listening on port ${port}`))

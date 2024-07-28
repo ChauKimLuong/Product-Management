@@ -1,0 +1,68 @@
+[
+    {
+        "title": "Kiwi",
+        "description": "An apple mobile which is nothing like apple",
+        "price": 549,
+        "discountPercentage": 12.96,
+        "stock": 94,
+        "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Kiwi/thumbnail.png",
+        "status": "active",
+        "position": 1,
+        "deleted": false
+    },
+    {
+        "title": "Ice Cream",
+        "description": "The latest Samsung flagship smartphone with cutting-edge technology.",
+        "price": 799,
+        "discountPercentage": 15.00,
+        "stock": 120,
+        "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Ice%20Cream/thumbnail.png",
+        "status": "active",
+        "position": 2,
+        "deleted": false
+    },
+    {
+        "title": "Juice",
+        "description": "Google's flagship phone with excellent camera and software experience.",
+        "price": 699,
+        "discountPercentage": 10.00,
+        "stock": 85,
+        "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Juice/thumbnail.png",
+        "status": "active",
+        "position": 3,
+        "deleted": false
+    },
+    {
+        "title": "OnePlus 9 Pro",
+        "description": "High performance smartphone with great value and build quality.",
+        "price": 969,
+        "discountPercentage": 8.50,
+        "stock": 60,
+        "thumbnail": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+        "status": "active",
+        "position": 4,
+        "deleted": false
+    },
+    {
+        "title": "Fish Steak",
+        "description": "Compact flagship smartphone with excellent display and camera features.",
+        "price": 849,
+        "discountPercentage": 9.00,
+        "stock": 47,
+        "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Fish%20Steak/thumbnail.png",
+        "status": "active",
+        "position": 5,
+        "deleted": false
+    },
+    {
+        "title": "Green Chili Pepper",
+        "description": "Powerful smartphone with top-of-the-line specifications at a competitive price.",
+        "price": 749,
+        "discountPercentage": 13.00,
+        "stock": 100,
+        "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Green%20Chili%20Pepper/thumbnail.png",
+        "status": "active",
+        "position": 6,
+        "deleted": false
+    }
+]
