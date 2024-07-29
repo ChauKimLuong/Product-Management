@@ -3,6 +3,9 @@ const app = express()
 
 const route = require("./routes/client/index.route.js")
 route(app)
+const routeAdmin = require("./routes/admin/index.route.js")
+routeAdmin(app)
+
 
 require("dotenv").config() // Trước Database 
 const port = process.env.PORT
