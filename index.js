@@ -13,7 +13,8 @@ const port = process.env.PORT
 const database = require("./config/database")
 database.connect()
 
-
+const systemConfig = require("./config/system.js")
+app.locals.prefixAdmin = systemConfig.prefixAdmin
 
 
 app.set("views", "./views")
