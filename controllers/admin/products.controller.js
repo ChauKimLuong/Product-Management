@@ -40,7 +40,8 @@ module.exports.products = async (req, res) => {
 // Chức năng tìm kiếm
     let keyword = req.query.keyword
     if (keyword){
-        find.title = keyword
+        const regex = new RegExp(keyword, "i")
+        find.title = regex
     } 
 
     const products = await Product.find(find)
