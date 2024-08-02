@@ -39,7 +39,7 @@
             } else {
                 url.searchParams.delete("keyword")
             }
-            // window.location.href = url.href
+            window.location.href = url.href
         })
     }
 

@@ -33,8 +33,15 @@ module.exports.products = async (req, res) => {
     let find = {
         deleted: false,
     }
+// Chức năng lọc
     if (currentStatus)
         find.status = currentStatus
+
+// Chức năng tìm kiếm
+    let keyword = req.query.keyword
+    if (keyword){
+        find.title = keyword
+    } 
 
     const products = await Product.find(find)
     // console.log(products)
@@ -42,6 +49,7 @@ module.exports.products = async (req, res) => {
     res.render("admin/pages/products/index.pug", {
         pageTitle: "Trang sản phẩm",
         products: products,
-        filtersStatus: filtersStatus
+        filtersStatus: filtersStatus,
+        keyword: keyword,
     })
 }
