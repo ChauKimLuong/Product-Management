@@ -23,8 +23,25 @@ module.exports.products = async (req, res) => {
     if (objectSearch.regex)
         find.title = objectSearch.regex
 
+    // Chức năng phân trang
+    let objectPagination = {
+        limitItems: 4,
+        currentPage: 1,
+        skip: 0,
+
+    }
+    const countItem = await Product.countDocuments(find)
+    objectPagination.titlePage = Math.ceil(countItem / objectPagination.limitItems)
+
+    if (req.query.page) {
+        objectPagination.currentPage = parseInt(req.query.page)
+        objectPagination.skip = (objectPagination.currentPage - 1) * objectPagination.limitItems
+    }
+
+
+
     // Lấy các sản phẩm từ cơ sở dữ liệu
-    const products = await Product.find(find)
+    const products = await Product.find(find).limit(objectPagination.limitItems).skip(objectPagination.skip)
     // console.log(products)
 
     res.render("admin/pages/products/index.pug", {
@@ -32,5 +49,6 @@ module.exports.products = async (req, res) => {
         products: products,
         filterStatus: filterStatus,
         keyword: objectSearch.keyword,
+        pagination: objectPagination,
     })
 }
