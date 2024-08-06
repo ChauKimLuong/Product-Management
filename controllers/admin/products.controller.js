@@ -1,5 +1,4 @@
 // [GET] /admin/products
-
 const Product = require("../../models/product.model");
 const filterStatusHelper = require("../../helpers/filterStatus");
 const seachHelper = require("../../helpers/search");
@@ -24,7 +23,7 @@ module.exports.products = async (req, res) => {
     const countProduct = await Product.countDocuments(find);
     let objectPagination = paginationHelper(
         {
-            limitItems: 3,
+            limitItems: 4,
             currentPage: 1,
             skip: 0,
         },
@@ -46,3 +45,12 @@ module.exports.products = async (req, res) => {
         pagination: objectPagination,
     });
 };
+
+// [PATCH] /admin/products/change-status/:status/:id
+module.exports.changeStatus = async (req, res) => {
+    const status = req.params.status
+    const id = req.params.id
+
+    await Product.updateOne({ _id: id }, { status: status })
+    res.redirect("back")
+}

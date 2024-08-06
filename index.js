@@ -2,6 +2,10 @@
 const express = require("express")
 const app = express()
 
+// Method-Override
+const methodOverride = require("method-override")
+app.use(methodOverride('_method'))
+
 // Admin
 const systemConfig = require("./config/system.js")
 app.locals.prefixAdmin = systemConfig.prefixAdmin
@@ -20,8 +24,10 @@ const port = process.env.PORT
 const database = require("./config/database")
 database.connect()
 
+
 app.set("views", "./views")
 app.set("view engine", "pug")
 app.use(express.static("public"))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}`))
+

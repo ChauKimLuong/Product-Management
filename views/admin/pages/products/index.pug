@@ -3,6 +3,7 @@ include ../../mixins/filterStatus.pug
 include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 
+
 block main 
     h1 Trang sản phẩm 
 
@@ -42,11 +43,30 @@ block main
                             td #{item.price}$
                             td
                                 if item.status == "active"
-                                    a(href="#" class="btn btn-success btn-sm") Hoạt động
+                                    button(
+                                        class="btn btn-success btn-sm"
+                                        data-status=item.status
+                                        data-id=item.id
+                                        button-change-status
+                                    ) Hoạt động
                                 else 
-                                    a(href="#" class="btn btn-danger btn-sm") Dừng hoạt động
+                                    button(
+                                        class="btn btn-danger btn-sm"
+                                        data-status=item.status
+                                        data-id=item.id
+                                        button-change-status
+                                    ) Dừng hoạt động
                             td 
                                 button(class="btn btn-warning btn-sm") Sửa
                                 button(class="btn btn-danger btn-sm ml-1") Xóa 
 
     +pagination(pagination)
+
+    form(
+        action=""
+        method="POST"
+        id="form-change-status"
+        data-path=`${prefixAdmin}/products/change-status`
+    ) 
+    
+    script(src="/admin/js/product.js") 
