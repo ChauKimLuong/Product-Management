@@ -33,6 +33,7 @@ module.exports.products = async (req, res) => {
 
     // Lấy các sản phẩm từ cơ sở dữ liệu
     const products = await Product.find(find)
+        .sort({ position: -1 })
         .limit(objectPagination.limitItems)
         .skip(objectPagination.skip);
     // console.log(products)
@@ -69,6 +70,12 @@ module.exports.changeMulti = async (req, res) => {
             break
         case "delete":
             await Product.updateMany({ _id: { $in: ids } }, { deleted: true, deletedAt: new Date})
+            break
+        case "change-position":
+            for (const id_pos of ids) {
+                const [id, pos] = id_pos.split("-")
+                await Product.updateOne({_id: id}, {position: pos} )
+            }
             break
         default:
             break

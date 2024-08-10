@@ -97,7 +97,7 @@ if (checkboxMulti){
 
 // Form Change Multi
 const formChangeMulti = document.querySelector("[form-change-multi]")
-var value = ""
+
 if (formChangeMulti) {
     formChangeMulti.addEventListener("submit", (event) => {
         event.preventDefault()
@@ -116,12 +116,21 @@ if (formChangeMulti) {
         const inputIds = formChangeMulti.querySelector("[name='ids']")
 
         if (idsChecked.length) {
-            idsChecked.forEach(id => {
-                value += `${id.value}, `
+            var value = ""
+
+            idsChecked.forEach(idChecked => {
+                let id = idChecked.value
+                
+                if (typeChange == "change-position") {
+                    const position = idChecked.closest("tr").querySelector("[name='position']").value
+
+                    id = `${id}-${position}` // Thêm position vào cuối id nếu như chọn Thay đổi vị trí
+                }
+                value += `${id}, `
             })
             value = value.slice(0, -2);
             inputIds.value = value
-
+        
             formChangeMulti.submit()
         } else {
             alert("Vui lòng chọn ít nhất 1 bản ghi!")
