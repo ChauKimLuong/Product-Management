@@ -102,6 +102,15 @@ if (formChangeMulti) {
     formChangeMulti.addEventListener("submit", (event) => {
         event.preventDefault()
 
+        const typeChange = event.target.elements.type.value
+        if (typeChange == "delete"){
+            const isConfirm = confirm("Xóa ?")
+
+            if (!isConfirm){
+                return;
+            }
+        }
+
         const checkboxMulti = document.querySelector("[checkbox-multi]")
         const idsChecked = checkboxMulti.querySelectorAll("[name='id']:checked")
         const inputIds = formChangeMulti.querySelector("[name='ids']")
