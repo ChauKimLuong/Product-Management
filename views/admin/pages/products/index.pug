@@ -3,7 +3,7 @@ include ../../mixins/filterStatus.pug
 include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/form-change-multi.pug
-
+include ../../mixins/alert-success.pug
 
 block main 
     h1 Trang sản phẩm 
@@ -16,6 +16,9 @@ block main
                     +filterStatus(filterStatus)
                 .col-6 
                     +search(keyword)
+
+    +alert-success(5000)
+
     .card.mb-3 
         .card-header Danh sách sản phẩm
         .card-body

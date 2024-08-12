@@ -37,7 +37,6 @@ module.exports.products = async (req, res) => {
         .limit(objectPagination.limitItems)
         .skip(objectPagination.skip);
     // console.log(products)
-
     res.render("admin/pages/products/index.pug", {
         pageTitle: "Trang sản phẩm",
         products: products,
@@ -49,47 +48,53 @@ module.exports.products = async (req, res) => {
 
 // [PATCH] /admin/products/change-status/:status/:id
 module.exports.changeStatus = async (req, res) => {
-    const status = req.params.status
-    const id = req.params.id
+    const status = req.params.status;
+    const id = req.params.id;
 
-    await Product.updateOne({ _id: id }, { status: status })
-    res.redirect("back")
-}
+    await Product.updateOne({ _id: id }, { status: status });
+
+    req.flash("success", "Cập nhật trạng thái thành công!");
+    res.redirect("back");
+};
 
 // [PATCH] /admin/products/change-multi
 module.exports.changeMulti = async (req, res) => {
-    const type = req.body.type
-    const ids = req.body.ids.split(", ")
+    const type = req.body.type;
+    const ids = req.body.ids.split(", ");
     
     switch (type) {
         case "active":
-            await Product.updateMany({ _id: { $in: ids } }, {status: "active"})
-            break
+            await Product.updateMany({ _id: { $in: ids } }, { status: "active" });
+            break;
         case "inactive":
-            await Product.updateMany({ _id: { $in: ids } }, {status: "inactive"})
-            break
+            break;
         case "delete":
-            await Product.updateMany({ _id: { $in: ids } }, { deleted: true, deletedAt: new Date})
-            break
+            await Product.updateMany(
+                { _id: { $in: ids } },
+                { deleted: true, deletedAt: new Date() }
+            );
+            break;
         case "change-position":
             for (const id_pos of ids) {
-                const [id, pos] = id_pos.split("-")
-                await Product.updateOne({_id: id}, {position: pos} )
+                const [id, pos] = id_pos.split("-");
+                await Product.updateOne({ _id: id }, { position: pos });
             }
-            break
+            break;
         default:
-            break
+            break;
     }
-
-    res.redirect("back")
-}
+    req.flash("success", `Đã ${type} ${ids.length} sản phẩm!`);
+    res.redirect("back");
+};
 // [DELETE]/admin/products/delete/:id
 module.exports.deleteItem = async (req, res) => {
-    const id = req.params.id
+    const id = req.params.id;
 
     // await Product.deleteOne({ _id: id })
     await Product.updateOne(
-        { _id: id }, 
-        { deleted: true, deletedAt: new Date})
-    res.redirect("back")
-}
+        { _id: id },
+        { deleted: true, deletedAt: new Date() }
+    );
+    req.flash("success", "Xóa sản phẩm thành công!");
+    res.redirect("back");
+};
