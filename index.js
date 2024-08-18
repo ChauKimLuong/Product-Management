@@ -6,7 +6,7 @@ const app = express()
 const session = require('express-session');
 const flash = require('express-flash');
 
-app.use(session({ 
+app.use(session({
     cookie: { maxAge: 60000 },
     secret: 'secretKey', // Bạn có thể thay đổi khóa bí mật này
     resave: false,
@@ -39,6 +39,7 @@ const port = process.env.PORT
 // Mongoose
 const database = require("./config/database")
 database.connect()
+
 
 
 app.set("views", "./views")
