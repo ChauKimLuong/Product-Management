@@ -24,6 +24,13 @@
 }
 /* End header */
 
+/* Thumbnail */
+.thumbnail {
+    max-width: 250px;
+    max-height: 100%;
+}
+/* End Thumbnail Client*/
+
 /* Start footer */
 .footer {
     background-color: #333;

@@ -113,13 +113,13 @@ module.exports.createPost = async (req, res) => {
     req.body.price = parseInt(req.body.price)
     req.body.discountPrecentage = parseInt(req.body.discountPrecentage)
     req.body.stock = parseInt(req.body.stock)
-
+    req.body.thumbnail = `/uploads/${req.file.filename}`
     if (!req.body.position) {
         req.body.position = await Product.countDocuments() + 1
     } else {
         req.body.position = parseInt(req.body.position)
     }
-
+    
     const product = new Product(req.body)
     await product.save()
 

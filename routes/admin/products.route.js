@@ -1,17 +1,21 @@
-const express = require("express")
-const route = express.Router()
-const controller =  require("../../controllers/admin/products.controller")
+const express = require("express");
+const route = express.Router();
+const controller = require("../../controllers/admin/products.controller");
+// Multer
+const multer = require("multer");
+const storageMulter = require("../../helpers/storageMulter")
+const upload = multer({ storage: storageMulter() });
 
-route.get("/", controller.products)
+route.get("/", controller.products);
 
-route.patch("/change-status/:status/:id", controller.changeStatus)
+route.patch("/change-status/:status/:id", controller.changeStatus);
 
-route.patch("/change-multi", controller.changeMulti)
+route.patch("/change-multi", controller.changeMulti);
 
-route.delete("/delete/:id", controller.deleteItem)
+route.delete("/delete/:id", controller.deleteItem);
 
-route.get("/create", controller.create)
+route.get("/create", controller.create);
 
-route.post("/create", controller.createPost)
+route.post("/create", upload.single("thumbnail"), controller.createPost);
 
-module.exports = route
+module.exports = route;
