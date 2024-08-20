@@ -6,6 +6,8 @@ const multer = require("multer");
 const storageMulter = require("../../helpers/storageMulter")
 const upload = multer({ storage: storageMulter() });
 
+const validate = require("../../validate/admin/product.validate")
+
 route.get("/", controller.products);
 
 route.patch("/change-status/:status/:id", controller.changeStatus);
@@ -16,6 +18,10 @@ route.delete("/delete/:id", controller.deleteItem);
 
 route.get("/create", controller.create);
 
-route.post("/create", upload.single("thumbnail"), controller.createPost);
+route.post(
+    "/create", 
+    upload.single("thumbnail"), 
+    validate.createPost,
+    controller.createPost);
 
 module.exports = route;
