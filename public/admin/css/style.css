@@ -79,3 +79,13 @@
     cursor: pointer;
 }
 /* End Show Alert*/
+
+/* Upload Image Preview */
+[upload-image-preview] {
+    max-width: 400px;
+    border: 1px #ddd solid;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 15px;
+}
+/* End Upload Image Preview */
