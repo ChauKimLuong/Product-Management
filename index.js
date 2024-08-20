@@ -2,6 +2,10 @@
 const express = require("express")
 const app = express()
 
+// Method-Override
+const methodOverride = require("method-override")
+app.use(methodOverride('_method'))
+
 // Flash
 const session = require('express-session');
 const flash = require('express-flash');
@@ -17,10 +21,6 @@ app.use(flash());
 // Body-Parser
 const bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({ extended: false }))
-
-// Method-Override
-const methodOverride = require("method-override")
-app.use(methodOverride('_method'))
 
 // Admin
 const systemConfig = require("./config/system.js")

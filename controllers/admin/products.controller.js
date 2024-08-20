@@ -68,6 +68,7 @@ module.exports.changeMulti = async (req, res) => {
             await Product.updateMany({ _id: { $in: ids } }, { status: "active" });
             break;
         case "inactive":
+            await Product.updateMany({ _id: { $in: ids } }, { status: "inactive" });
             break;
         case "delete":
             await Product.updateMany(
@@ -111,7 +112,7 @@ module.exports.create = (req, res) => {
 // [POST] /admin/products/create
 module.exports.createPost = async (req, res) => {
     req.body.price = parseInt(req.body.price);
-    req.body.discountPrecentage = parseInt(req.body.discountPrecentage);
+    req.body.discountPercentage = parseInt(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);
     
     if (req.file) {
@@ -127,4 +128,44 @@ module.exports.createPost = async (req, res) => {
     await product.save();
 
     res.redirect(`${systemConfig.prefixAdmin}/products`);
+};
+
+
+// [GET] /admin/products/edit/:id
+module.exports.edit = async (req, res) => {
+    try {
+        const find = {
+            _id: req.params.id,
+            deleted: false,
+        }
+        const product = await Product.findOne(find)
+    
+        res.render("admin/pages/products/edit", {
+            pageTitle: "Chỉnh sửa sản phẩm",
+            product: product,
+        })
+    } catch (error) {
+        req.flash("error", "Không tìm thấy sản phẩm!");
+        res.redirect(`${systemConfig.prefixAdmin}/products`);
+    }
+}
+// [PATCH] /admin/products/edit/:id
+module.exports.editPatch = async (req, res) => {
+    req.body.price = parseInt(req.body.price);
+    req.body.discountPercentage = parseInt(req.body.discountPercentage);
+    req.body.stock = parseInt(req.body.stock);
+    req.body.position = parseInt(req.body.position);
+
+    if (req.file) {
+        req.body.thumbnail = `/uploads/${req.file.filename}`;
+    }
+
+    try {
+        await Product.updateOne({ _id: req.params.id }, req.body);
+        req.flash("success", "Cập nhật thành công!");
+    } catch (error) {
+        req.flash("error", "Cập nhật thất bại!");
+    }
+
+    res.redirect("back");
 };
