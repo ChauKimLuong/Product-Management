@@ -157,5 +157,4 @@ if (showAlert){
         showAlert.classList.add("alert-hidden")
     })
 }
-
 // End Show Alert
