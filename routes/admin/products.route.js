@@ -34,4 +34,6 @@ route.patch(
     controller.editPatch // Controller xử lý logic
 );
 
+route.get("/detail/:id", controller.detail);
+
 module.exports = route;

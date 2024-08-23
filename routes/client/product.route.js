@@ -3,7 +3,7 @@ const router = express.Router()
 const controller = require("../../controllers/client/products.controller")
 
 router.get("/", controller.index)
-router.get("/edit", controller.edit)
-router.get("/create", controller.create)
+
+router.get("/detail/:slug", controller.detail)
 
 module.exports = router

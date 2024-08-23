@@ -42,9 +42,10 @@ database.connect()
 
 
 
-app.set("views", "./views")
+app.set("views", `${__dirname}/views`)
 app.set("view engine", "pug")
-app.use(express.static("public"))
+
+app.use(express.static(`${__dirname}/public`))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}`))
 
