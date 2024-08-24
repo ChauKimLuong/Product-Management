@@ -1,10 +1,11 @@
 const express = require("express");
 const route = express.Router();
 const controller = require("../../controllers/admin/products.controller");
-// Multer
-const multer = require("multer");
-const storageMulter = require("../../helpers/storageMulter");
-const upload = multer({ storage: storageMulter() });
+
+const multer = require("multer")
+const upload = multer();
+
+const uploadCloud = require("../../middlewares/admin/uploadCloud.middleware")
 
 const validate = require("../../validate/admin/product.validate");
 
@@ -21,6 +22,7 @@ route.get("/create", controller.create);
 route.post(
     "/create",
     upload.single("thumbnail"),
+    uploadCloud.upload,
     validate.createPost,
     controller.createPost
 );

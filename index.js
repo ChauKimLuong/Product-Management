@@ -1,51 +1,50 @@
 // Express
-const express = require("express")
-const app = express()
+const express = require("express");
+const app = express();
 
 // Method-Override
-const methodOverride = require("method-override")
-app.use(methodOverride('_method'))
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
 
 // Flash
-const session = require('express-session');
-const flash = require('express-flash');
+const session = require("express-session");
+const flash = require("express-flash");
 
-app.use(session({
-    cookie: { maxAge: 60000 },
-    secret: 'secretKey', // Bạn có thể thay đổi khóa bí mật này
-    resave: false,
-    saveUninitialized: true
-}));
+app.use(
+    session({
+        cookie: { maxAge: 60000 },
+        secret: "secretKey", // Bạn có thể thay đổi khóa bí mật này
+        resave: false,
+        saveUninitialized: true,
+    })
+);
 app.use(flash());
 
 // Body-Parser
-const bodyParser = require("body-parser")
-app.use(bodyParser.urlencoded({ extended: false }))
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Admin
-const systemConfig = require("./config/system.js")
-app.locals.prefixAdmin = systemConfig.prefixAdmin
+const systemConfig = require("./config/system.js");
+app.locals.prefixAdmin = systemConfig.prefixAdmin;
 
 //Route
-const route = require("./routes/client/index.route.js")
-route(app)
-const routeAdmin = require("./routes/admin/index.route.js")
-routeAdmin(app)
+const route = require("./routes/client/index.route.js");
+route(app);
+const routeAdmin = require("./routes/admin/index.route.js");
+routeAdmin(app);
 
 // .env
-require("dotenv").config() // Trước Database 
-const port = process.env.PORT
+require("dotenv").config();
+const port = process.env.PORT;
 
 // Mongoose
-const database = require("./config/database")
-database.connect()
+const database = require("./config/database");
+database.connect();
 
+app.set("views", `${__dirname}/views`);
+app.set("view engine", "pug");
 
+app.use(express.static(`${__dirname}/public`));
 
-app.set("views", `${__dirname}/views`)
-app.set("view engine", "pug")
-
-app.use(express.static(`${__dirname}/public`))
-
-app.listen(port, () => console.log(`Example app listening on port ${port}`))
-
+app.listen(port, () => console.log(`Example app listening on port ${port}`));
