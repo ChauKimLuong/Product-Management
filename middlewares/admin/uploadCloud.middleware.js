@@ -8,34 +8,31 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET
 });
 
-console.log("Cloudinary config:", cloudinary.config());
-
-
-module.exports.upload = (req, res, next) => {
+module.exports.upload = async (req, res, next) => {
     if (req.file) {
-        let streamUpload = (req) => {
-            return new Promise((resolve, reject) => {
-                let stream = cloudinary.uploader.upload_stream((error, result) => {
-                    if (result) {
-                        resolve(result);
-                    } else {
-                        reject(error);
-                    }
+        try {
+            const streamUpload = () => {
+                return new Promise((resolve, reject) => {
+                    const stream = cloudinary.uploader.upload_stream((error, result) => {
+                        if (result) {
+                            resolve(result);
+                        } else {
+                            reject(error);
+                        }
+                    });
+
+                    streamifier.createReadStream(req.file.buffer).pipe(stream);
                 });
+            };
 
-                streamifier.createReadStream(req.file.buffer).pipe(stream);
-            });
-        };
-
-        async function upload(req) {
-            let result = await streamUpload(req);
+            const result = await streamUpload();
             req.body[req.file.fieldname] = result.secure_url;
             next();
+        } catch (error) {
+            console.error("Lỗi khi tải lên Cloudinary:", error);
+            res.status(500).send("Tải lên hình ảnh thất bại, vui lòng thử lại.");
         }
-
-        upload(req);
     } else {
         next();
     }
-    
-}
+};
