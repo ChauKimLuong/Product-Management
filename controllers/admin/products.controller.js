@@ -32,12 +32,20 @@ module.exports.products = async (req, res) => {
         countProduct
     );
 
+    // Sort
+    let sort = {};
+    if (req.query.sortKey && req.query.sortValue) {
+        sort[req.query.sortKey] = req.query.sortValue
+    } else {
+        sort.position = "desc"
+    }
+
     // Lấy các sản phẩm từ cơ sở dữ liệu
     const products = await Product.find(find)
-        .sort({ position: -1 })
+        .sort(sort)
         .limit(objectPagination.limitItems)
         .skip(objectPagination.skip);
-    // console.log(products)
+    
     res.render("admin/pages/products/index.pug", {
         pageTitle: "Trang sản phẩm",
         products: products,

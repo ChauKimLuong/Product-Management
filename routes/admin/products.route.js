@@ -32,6 +32,7 @@ route.get("/edit/:id", controller.edit);
 route.patch(
     "/edit/:id", // Đảm bảo rằng route trùng với URL trong form
     upload.single("thumbnail"), // Middleware để xử lý file upload
+    uploadCloud.upload,
     validate.createPost, // Middleware để validate dữ liệu
     controller.editPatch // Controller xử lý logic
 );
