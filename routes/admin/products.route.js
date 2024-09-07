@@ -9,7 +9,7 @@ const uploadCloud = require("../../middlewares/admin/uploadCloud.middleware")
 
 const validate = require("../../validate/admin/product.validate");
 
-route.get("/", controller.products);
+route.get("/", controller.index);
 
 route.patch("/change-status/:status/:id", controller.changeStatus);
 

@@ -5,7 +5,7 @@ const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
 const paginationHelper = require("../../helpers/pagination");
 
-module.exports.products = async (req, res) => {
+module.exports.index = async (req, res) => {
     // Xử lý trạng thái lọc từ các tham số truy vấn
     const filterStatus = filterStatusHelper(req.query);
 
