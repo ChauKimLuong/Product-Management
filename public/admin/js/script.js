@@ -146,9 +146,11 @@ if (formChangeMulti) {
 
 // Show Alert
 const showAlert = document.querySelector("[show-alert]")
+
 if (showAlert){
     const time = parseInt(showAlert.getAttribute("data-time"))
     const closeAlert = showAlert.querySelector("[close-alert]")
+
     setTimeout(() => {
         showAlert.classList.add("alert-hidden")
     }, time)
@@ -158,3 +160,42 @@ if (showAlert){
     })
 }
 // End Show Alert
+
+// Sort
+const sort = document.querySelector("[sort]")
+
+if (sort) {
+    const selectSort = sort.querySelector("[sort-select]")
+    var url = new URL(window.location.href)
+    // Săp xếp
+    selectSort.addEventListener("change", (event) => {
+        const [sortKey, sortValue] = (event.target.value).split("-")
+
+        url.searchParams.set("sortKey", sortKey)
+        url.searchParams.set("sortValue", sortValue)
+
+        window.location.href = url;
+
+    })
+    // Clear
+    const clearSort = sort.querySelector("[sort-clear]")
+    clearSort.addEventListener("click", () => {
+        url.searchParams.delete("sortKey")
+        url.searchParams.delete("sortValue")
+
+        window.location.href = url;
+    })
+
+    // Thêm selected cho option
+    const sortKey = url.searchParams.get("sortKey")
+    const sortValue = url.searchParams.get("sortValue")
+
+    if (sortKey && sortValue) {
+        console.log(sortKey, sortValue)
+        const optionSelected = selectSort.querySelector(`[value="${sortKey}-${sortValue}"]`)
+        if (optionSelected){
+            optionSelected.selected = true;
+        }
+    }
+}
+// End Sort

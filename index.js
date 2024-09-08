@@ -2,6 +2,8 @@
 const express = require("express");
 const app = express();
 
+const path = require('path');
+
 // Method-Override
 const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
@@ -33,6 +35,9 @@ const route = require("./routes/client/index.route.js");
 route(app);
 const routeAdmin = require("./routes/admin/index.route.js");
 routeAdmin(app);
+
+// TinyMCE
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 // .env
 require("dotenv").config();
