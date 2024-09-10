@@ -1,5 +1,5 @@
 mixin table-tree(records, level = 0)
-    each item, index in records
+    each item in records
         tr 
             td
                 input(
@@ -7,7 +7,7 @@ mixin table-tree(records, level = 0)
                     name="id"
                     value=item.id
                 )
-            td(style=`padding-left: ${level * 30}px`)  #{index+1}
+            td(style=`padding-left: ${level * 30}px`)  #{item.index}
             td(style=`padding-left: ${level * 30}px`)
                 img(
                     src=item.thumbnail

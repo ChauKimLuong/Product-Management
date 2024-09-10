@@ -40,7 +40,7 @@ module.exports.index = async (req, res) => {
         sort.position = "desc"
     }
 
-    // Lấy các sản phẩm từ cơ sở dữ liệu
+    // Lấy các sản phẩm từ cơ sở dữ liệu 
     const products = await Product.find(find)
         .sort(sort)
         .limit(objectPagination.limitItems)
