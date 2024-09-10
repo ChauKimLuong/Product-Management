@@ -1,0 +1,7 @@
+mixin select-tree(records, level = 0)
+    each item in records 
+        - let indent = " . ".repeat(level * 2) 
+        option(value=item.id)   #{indent} #{item.title}
+        if (item.children && item.children.length) > 0
+            +select-tree(item.children, level + 1)
+
