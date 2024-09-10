@@ -1,5 +1,6 @@
 const systemConfig = require("../../config/system");
-const ProductCategory = require("../../models/product-category.model")
+const productCategory = require("../../models/product-category.model")
+const createTreeHelper = require("../../helpers/createTree")
 
 // [GET] /admin/product-category
 module.exports.index = async (req, res) => {
@@ -7,32 +8,39 @@ module.exports.index = async (req, res) => {
         deleted: false,
     }
 
-    record = await ProductCategory.find(find);
-
-    
+    const records = await productCategory.find(find);
+    const newRecords = createTreeHelper(records);
 
     res.render("admin/pages/product-category/index", {
         pageTitle: "Trang danh mục sản phẩm",
-        record: record
+        records: newRecords,
     })
 }
 
 // [GET] /admin/product-category/create
-module.exports.create = (req, res) => {
+module.exports.create = async (req, res) => {
+    let find = {
+        deleted: false,
+    }
+
+    const records = await productCategory.find(find);
+    const newRecords = createTreeHelper(records);
+
     res.render("admin/pages/product-category/create", {
-        pageTitle: "Tạo danh mục"
+        pageTitle: "Tạo danh mục",
+        records: newRecords,
     })
 }
 
 // [POST] /admin/product-category/create
 module.exports.createPost = async (req, res) => {
     if (!req.body.position) {
-        req.body.position = (await ProductCategory.countDocuments()) + 1;
+        req.body.position = (await productCategory.countDocuments()) + 1;
     } else {
         req.body.position = parseInt(req.body.position);
     }
 
-    const record = new ProductCategory(req.body);
+    const record = new productCategory(req.body);
     await record.save();
 
     res.redirect(`${systemConfig.prefixAdmin}/product-category`);
