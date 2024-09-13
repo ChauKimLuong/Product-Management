@@ -1,6 +1,6 @@
 mixin select-tree(records, parent_id = "", level = 0)
     each item in records 
-        - let indent = " . ".repeat(level * 2) 
+        - let indent = " - ".repeat(level * 2) 
         option(
             value=item.id
             selected=(item.id === parent_id)
