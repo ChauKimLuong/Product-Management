@@ -10,7 +10,7 @@ block main
     +alert-success(5000)
 
     form(
-        action=`${prefixAdmin}/product-category/edit/${productCategory._id}?_method=PATCH`
+        action=`${prefixAdmin}/product-category/edit/${productCategory.id}?_method=PATCH`
         method="POST"
         enctype="multipart/form-data"   
     )
@@ -32,7 +32,7 @@ block main
                 id="parent_id"
                 class="form-control"
             )  
-                option(value=productCategory.parent_id) --- Thư mục cha ---
+                option(value="") --- Thư mục cha ---
                 if(records)
                     +select-tree(records, productCategory.parent_id)
                             

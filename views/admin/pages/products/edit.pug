@@ -1,6 +1,6 @@
 extends ../../layouts/default.pug 
 include ../../mixins/alert.pug
-
+include ../../mixins/select-tree.pug
 
 block main 
     h1.mb-4 Chỉnh sửa sản phẩm 
@@ -23,6 +23,17 @@ block main
                 name="title"
                 value=product.title
             )
+
+        .form-group 
+            label(for="productCategory_id") Thư mục
+            select(
+                name="productCategory_id"
+                id="productCategory_id"
+                class="form-control"
+            )  
+                option(value="") -- Chọn thư mục --
+                if(category)
+                    +select-tree(category, product.productCategory_id)
 
         div(class="form-group")
             label(for="desc") Mô tả
