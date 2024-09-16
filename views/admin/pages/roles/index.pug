@@ -37,7 +37,7 @@ block main
                             tr 
                                 td  #{index + 1}
                                 td #{item.title}
-                                td #{item.description}$
+                                td #{item.description}
                                 td 
                                     a(
                                         href=`${prefixAdmin}/roles/detail/${item.id}`
@@ -46,12 +46,12 @@ block main
                                     a(
                                         class="btn btn-warning btn-sm"
                                         href=`${prefixAdmin}/roles/edit/${item.id}`
-                                        ) Sửa 
+                                    ) Sửa 
                                     button(
                                         class="btn btn-danger btn-sm ml-1"
                                         data-id=item.id
                                         button-delete
-                                        ) Xóa 
+                                    ) Xóa 
                     else 
                         tr 
                             td(colspan="4" class="text-center") Chưa có nhóm quyền nào được tạo
