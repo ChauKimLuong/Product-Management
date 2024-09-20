@@ -171,23 +171,10 @@
         color: #495057;
     }
 
-    tr[data-name="products-category_view"] td:first-child {
-        background-color: #d1ecf1; /* Light blue for 'Xem' row */
+    tr[data-name=""] td:first-child {
+        background-color: #d1ecf1; /* Màu xanh nhạt */
         color: #0c5460;
     }
-
-    tr[data-name="products-category_create"] td:first-child {
-        background-color: #d4edda; /* Light green for 'Thêm mới' row */
-        color: #155724;
-    }
-
-    tr[data-name="products-category_edit"] td:first-child {
-        background-color: #fff3cd; /* Light yellow for 'Chỉnh sửa' row */
-        color: #856404;
-    }
-
-    tr[data-name="products-category_delete"] td:first-child {
-        background-color: #f8d7da; /* Light red for 'Xóa' row */
-        color: #721c24;
-    }
+    
+    
 /* End View Phân quyền: admin/roles/permission */
