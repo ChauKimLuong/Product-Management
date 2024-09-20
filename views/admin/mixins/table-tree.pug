@@ -1,5 +1,5 @@
 mixin table-tree(records, level = 0)
-    each item, index in records
+    each item in records
         tr 
             td
                 input(
@@ -7,7 +7,7 @@ mixin table-tree(records, level = 0)
                     name="id"
                     value=item.id
                 )
-            td(style=`padding-left: ${level * 30}px`)  #{index+1}
+            td(style=`padding-left: ${level * 30}px`)  #{item.index}
             td(style=`padding-left: ${level * 30}px`)
                 img(
                     src=item.thumbnail
@@ -41,12 +41,12 @@ mixin table-tree(records, level = 0)
                     ) Dừng hoạt động
             td 
                 a(
-                    href=`${prefixAdmin}/products-category/detail/${item.id}`
+                    href=`${prefixAdmin}/product-category/detail/${item.id}`
                     class="btn btn-secondary btn-sm"
                 ) Chi tiết
                 a(
                     class="btn btn-warning btn-sm"
-                    href=`${prefixAdmin}/products-category/edit/${item.id}`
+                    href=`${prefixAdmin}/product-category/edit/${item.id}`
                     ) Sửa 
                 button(
                     class="btn btn-danger btn-sm ml-1"

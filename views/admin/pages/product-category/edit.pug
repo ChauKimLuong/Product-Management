@@ -3,113 +3,75 @@ include ../../mixins/alert.pug
 include ../../mixins/select-tree.pug
 
 block main 
-    h1.mb-4 Chỉnh sửa sản phẩm 
+
+    h1.mb-4 Chỉnh sửa danh mục sản phẩm
 
     +alert-error(5000)
     +alert-success(5000)
 
     form(
-        action=`${prefixAdmin}/products/edit/${product.id}?_method=PATCH`
+        action=`${prefixAdmin}/product-category/edit/${productCategory.id}?_method=PATCH`
         method="POST"
-        enctype="multipart/form-data"
+        enctype="multipart/form-data"   
     )
-
-        div(class="form-group")
-            label(for=title) Tiêu đề
+        .form-group 
+            label(for="title") Tiêu đề
             input(
                 type="text"
                 class="form-control"
                 id="title"
                 name="title"
-                value=product.title
-            )
+                required
+                value=productCategory.title
+            ) 
 
         .form-group 
-            label(for="productCategory_id") Thư mục
+            label(for="parent_id") Thư mục cha
             select(
-                name="productCategory_id"
-                id="productCategory_id"
+                name="parent_id"
+                id="parent_id"
                 class="form-control"
             )  
-                option(value="") -- Chọn thư mục --
-                if(category)
-                    +select-tree(category, product.productCategory_id)
+                option(value="") --- Thư mục cha ---
+                if(records)
+                    +select-tree(records, productCategory.parent_id)
+                            
 
-        div(class="form-group")
+        .form-group 
             label(for="desc") Mô tả
             textarea(
                 class="form-control textarea-mce"
-                name="description"
                 id="desc"
+                name="description"
                 rows="5"
-            ) #{product.description}
-
-        div(class="form-group")
-            label(for="price") Giá
-            input(
-                type="number"
-                class="form-control"
-                id="price"
-                name="price"
-                min="0"
-                value=product.price
-            )
-
-        div(class="form-group")
-            label(for="discount") % Giảm giá
-            input(
-                type="number"
-                class="form-control"
-                id="discount"
-                name="discountPercentage"
-                value=product.discountPercentage
-                min="0"
-            )
-
-        div(class="form-group")
-            label(for="stock") Số lượng
-            input(
-                type="number"
-                class="form-control"
-                id="stock"
-                name="stock"
-                min="0"
-                value=product.stock
-            )
-
+                
+            ) #{productCategory.description}
         div(
             class="form-group"
             upload-image
-            )
+        )
             label(for="thumbnail") Ảnh
-            br
             input(
                 type="file"
                 class="form-control-file"
                 id="thumbnail"
                 name="thumbnail"
                 accept="image/*"
-                src=product.thumbnail
                 upload-image-input
             )
-            br
             img(
-                src=product.thumbnail
+                src=productCategory.thumbnail
                 upload-image-preview
-                )
-
-        div(class="form-group")
+                class="image-preview"
+            )
+        .form-group 
             label(for="position") Vị trí
-            input(
-                type="number"
+            textarea(
                 class="form-control"
                 id="position"
                 name="position"
                 min="1"
-                placeholder="Tự động tăng"
-                value=product.position
-            )
-
+            ) #{productCategory.position}
         div(class="form-group form-check form-check-inline")
             input(
                 type="radio"
@@ -117,7 +79,7 @@ block main
                 id="statusActive"
                 name="status"
                 value="active"
-                checked=(product.status === "active")
+                checked=(productCategory.status == "active")
             )
             label(
                 for="statusActive"
@@ -131,17 +93,18 @@ block main
                 id="statusInActive"
                 name="status"
                 value="inactive"
-                checked=(product.status === "inactive")
+                checked=(productCategory.status == "inactive")
             )
             label(
                 for="statusInActive"
                 class="form-check-label"
             ) Dừng hoạt động
-
+            
         div(class="form-group")
             button(
                 type="submit"
                 class="btn btn-primary"
-            ) Cập nhật
+            ) Cập nhật 
+
 
     script(src="/admin/js/product.js")
