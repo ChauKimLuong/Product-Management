@@ -2,12 +2,13 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main
-    h2 Thêm mới tài khoản
+    h2 Chỉnh sửa tài khoản
 
     +alert-error(5000)
+    +alert-success(5000)
 
     form(
-        action=`${prefixAdmin}/accounts/create`, 
+        action=`${prefixAdmin}/accounts/edit/${record.id}?_method=PATCH`, 
         method="POST", 
         enctype="multipart/form-data"
     )
@@ -18,7 +19,8 @@ block main
                 type="text", 
                 class="form-control", 
                 id="fullName", 
-                name="fullName", 
+                name="fullName",
+                value=record.fullName,
                 required
             )
 
@@ -29,6 +31,7 @@ block main
                 class="form-control", 
                 id="email", 
                 name="email", 
+                value=record.email,
                 required
             )
         div(class="form-group")
@@ -37,8 +40,7 @@ block main
                 type="password", 
                 class="form-control", 
                 id="password", 
-                name="password", 
-                required
+                name="password",
             )
 
         div(class="form-group")
@@ -47,7 +49,8 @@ block main
                 type="text", 
                 class="form-control", 
                 id="phone", 
-                name="phone"
+                name="phone",
+                value=record.phone,
             )
 
         div(
@@ -69,17 +72,21 @@ block main
             ) X
             br
             img(
-                src=""
+                src=record.avatar
                 class="image-preview"
                 upload-image-preview
             )
 
         div(class="form-group")
-            label(for="role_id") Quyền
-            select(name="role_id" id="role_id" class="form-control")
-                option(disabled) -- Chọn quyền -- 
-                each role in roles
-                    option(value=role.id) #{role.title}
+        label(for="role_id") Quyền
+        select(name="role_id" id="role_id" class="form-control")
+            option(disabled) -- Chọn quyền --
+            each role in roles
+                // Kiểm tra nếu role.id trùng với record.role_id
+                option(value=role.id selected=(record.role_id.id==role.id)) #{role.title}
+
+
+
 
         div(class="form-group form-check form-check-inline")
             input(
@@ -88,7 +95,7 @@ block main
                 id="statusActive"
                 name="status"
                 value="active"
-                checked
+                checked=(record.status == "active")
             )
             label(
                 for="statusActive"
@@ -102,6 +109,7 @@ block main
                 id="statusInActive"
                 name="status"
                 value="inactive"
+                checked=(record.status == "inactive")
             )
             label(
                 for="statusInActive"
@@ -111,4 +119,4 @@ block main
             button(
                 type="submit"
                 class="btn btn-primary"
-            ) Tạo mới
+            ) Cập nhật
