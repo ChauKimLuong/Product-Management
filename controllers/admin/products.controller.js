@@ -1,4 +1,3 @@
-// [GET] /admin/products
 const systemConfig = require("../../config/system");
 const Product = require("../../models/product.model");
 const filterStatusHelper = require("../../helpers/filterStatus");
@@ -8,6 +7,7 @@ const paginationHelper = require("../../helpers/pagination");
 const productCategory = require("../../models/product-category.model")
 const createTreeHelper = require("../../helpers/createTree")
 
+// [GET] /admin/products
 module.exports.index = async (req, res) => {
     // Xử lý trạng thái lọc từ các tham số truy vấn
     const filterStatus = filterStatusHelper(req.query);
