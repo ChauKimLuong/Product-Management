@@ -2,6 +2,8 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main
+    if (role.permissions.includes("accounts_create"))
+
     h2 Thêm mới tài khoản
 
     +alert-error(5000)
@@ -112,3 +114,5 @@ block main
                 type="submit"
                 class="btn btn-primary"
             ) Tạo mới
+    else 
+        h3 Không có quyền truy cập
