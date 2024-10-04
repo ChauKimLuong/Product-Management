@@ -22,9 +22,13 @@ app.use(
 );
 app.use(flash());
 
-// Body-Parser
+// body-parser
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// Cookie-Parser
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 
 // Admin
 const systemConfig = require("./config/system.js");
