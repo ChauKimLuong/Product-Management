@@ -5,6 +5,7 @@ include ../../mixins/pagination.pug
 include ../../mixins/form-change-multi.pug
 include ../../mixins/alert.pug
 include ../../mixins/sort.pug
+include ../../mixins/moment.pug
 
 block main 
     if (role.permissions.includes("products_view"))
@@ -56,6 +57,7 @@ block main
                             th Giá
                             th Vị trí
                             th Trạng thái 
+                            th Người tạo
                             th Hành động
 
                     tbody   
@@ -103,6 +105,10 @@ block main
                                                 button-change-status
                                             ) Dừng hoạt động
                                 td 
+                                    p #{item.createrFullName}
+                                    +formatDate(item.createdBy.createdAt)
+
+                                td 
                                     a(
                                         href=`${prefixAdmin}/products/detail/${item.id}`
                                         class="btn btn-secondary btn-sm"
@@ -113,12 +119,12 @@ block main
                                             class="btn btn-warning btn-sm"
                                             href=`${prefixAdmin}/products/edit/${item.id}`
                                         ) Sửa 
-                                if (role.permissions.includes("products_delete"))
-                                    button(
-                                        class="btn btn-danger btn-sm ml-1"
-                                        data-id=item.id
-                                        button-delete
-                                    ) Xóa 
+                                    if (role.permissions.includes("products_delete"))
+                                        button(
+                                            class="btn btn-danger btn-sm ml-1"
+                                            data-id=item.id
+                                            button-delete
+                                        ) Xóa 
 
         +pagination(pagination)
 
