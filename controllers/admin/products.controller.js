@@ -96,7 +96,12 @@ module.exports.changeMulti = async (req, res) => {
         case "delete":
             await Product.updateMany(
                 { _id: { $in: ids } },
-                { deleted: true, deletedAt: new Date() }
+                { deleted: true, 
+                    deletedBy: {
+                        account_id: res.locals.user.id,
+                        deletedAt: new Date(),
+                    } 
+                }
             );
             break;
         case "change-position":
@@ -119,7 +124,13 @@ module.exports.deleteItem = async (req, res) => {
     // await Product.deleteOne({ _id: id })
     await Product.updateOne(
         { _id: id },
-        { deleted: true, deletedAt: new Date() }
+        { 
+            deleted: true, 
+            deletedBy: {
+                account_id: res.locals.user.id,
+                deletedAt: new Date(),
+            }
+        }
     );
     req.flash("success", "Xóa sản phẩm thành công!");
     res.redirect("back");

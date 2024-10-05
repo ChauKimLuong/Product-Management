@@ -36,7 +36,7 @@ const productSchema = new mongoose.Schema(
       type: Boolean, 
       default: false 
     },
-    deletedBy: { 
+    deletedBy: {
       account_id: String, 
       deletedAt: {
         type: Date,
