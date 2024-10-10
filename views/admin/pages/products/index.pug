@@ -58,6 +58,7 @@ block main
                             th Vị trí
                             th Trạng thái 
                             th Người tạo
+                            th Người cập nhật
                             th Hành động
 
                     tbody   
@@ -105,8 +106,11 @@ block main
                                                 button-change-status
                                             ) Dừng hoạt động
                                 td 
-                                    p #{item.createrFullName}
-                                    +formatDate(item.createdBy.createdAt)
+                                    p #{item.creatorFullName}
+                                    +formatTimeDate24(item.createdBy.createdAt)
+                                td 
+                                    p #{item.lastUpdaterFullName}
+                                    +formatTimeDate24(item.updatedBy.updatedAt)
 
                                 td 
                                     a(
