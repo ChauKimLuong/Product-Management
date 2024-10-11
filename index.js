@@ -34,6 +34,10 @@ app.use(cookieParser());
 const systemConfig = require("./config/system.js");
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
 
+// Moment View
+const moment = require("moment")
+app.locals.moment = moment
+
 //Route
 const route = require("./routes/client/index.route.js");
 route(app);

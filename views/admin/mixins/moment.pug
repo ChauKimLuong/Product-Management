@@ -1,0 +1,14 @@
+mixin formatTimeDate24(time)
+    p Thời gian: #{moment(time).format("HH:mm:ss DD/MM/YYYY")}
+
+mixin formatTimeDate12(time)
+    p Thời gian: #{moment(time).format("hh:mm:ss A DD/MM/YYYY")}
+
+mixin formatDayTimeDate24(time)
+    p Thời gian: #{moment(time).format("dddd, HH:mm:ss DD/MM/YYYY")}
+
+mixin formatDayTimeDateShort12(time)
+    p Thời gian: #{moment(time).format("ddd, hh:mm A DD/MM")}
+
+mixin formatDate(time)
+    p #{moment(time).format("DD/MM/YYYY")}
