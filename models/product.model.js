@@ -23,6 +23,7 @@ const productSchema = new mongoose.Schema(
       min: 0,
     },
     thumbnail: String,
+    featured: String,
     status: String,
     position: Number,
     createdBy: {

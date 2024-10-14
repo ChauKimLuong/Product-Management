@@ -29,7 +29,7 @@ module.exports.index = async (req, res) => {
     const countProduct = await Product.countDocuments(find);
     let objectPagination = paginationHelper(
         {
-            limitItems: 4,
+            limitItems: 5,
             currentPage: 1,
             skip: 0,
         },
@@ -72,6 +72,7 @@ module.exports.index = async (req, res) => {
             product.lastUpdaterFullName = lastUpdater.fullName
         }
     }
+
 
     res.render("admin/pages/products/index.pug", {
         pageTitle: "Trang sản phẩm",

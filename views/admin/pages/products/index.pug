@@ -106,11 +106,19 @@ block main
                                                 button-change-status
                                             ) Dừng hoạt động
                                 td 
-                                    p #{item.creatorFullName}
-                                    +formatTimeDate24(item.createdBy.createdAt)
+                                    if (item.creatorFullName)
+                                        p #{item.creatorFullName}
+                                        +formatTimeDate24(item.createdBy.createdAt)
+                                    else
+                                        p Không có dữ liệu thời gian
+
                                 td 
                                     p #{item.lastUpdaterFullName}
-                                    +formatTimeDate24(item.updatedBy.updatedAt)
+                                    if item.updatedBy && item.updatedBy.length > 0
+                                        +formatTimeDate24(item.updatedBy.at(-1).updatedAt)
+                                    else
+                                        p Không có dữ liệu cập nhật
+
 
                                 td 
                                     a(
