@@ -60,4 +60,4 @@ app.set("view engine", "pug");
 
 app.use(express.static(`${__dirname}/public`));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}`));
+app.listen(port, () => console.log(`Server đang chạy tại http://localhost:${port}`));

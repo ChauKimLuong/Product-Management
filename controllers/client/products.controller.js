@@ -8,7 +8,7 @@ let find = {
 
 module.exports.index = async (req, res) => {
     const products = await Product.find(find).sort({ position: -1 })
-    console.log(products)
+    // console.log(products)
 
     const newProducts = products.map((item) => {
         item.priceNew = (item.price*(1-item.discountPercentage/100)).toFixed()
