@@ -1,12 +1,19 @@
-/* Start header */
+/* START header */
 .header {
     border-bottom: 1px solid #ddd;
-    padding: 10px 0px
+    padding: 10px 0;
+    background-color: #f8f8f8; /* Thêm nền sáng cho header */
 }
 
 .header .inner-logo img {
     max-width: 50px;
     max-height: 100%;
+    transition: transform 0.3s ease;
+}
+
+/* Hiệu ứng phóng to nhẹ khi hover logo */
+.header .inner-logo img:hover {
+    transform: scale(1.1);
 }
 
 .header .inner-menu > ul {
@@ -19,48 +26,248 @@
     flex-wrap: wrap;
 }
 
+/* Căn giữa menu cho màn hình nhỏ hơn */
+@media (max-width: 768px) {
+    .header .inner-menu > ul {
+        justify-content: center;
+    }
+}
+
 .header .inner-menu > ul > li {
     margin-left: 20px;
+    position: relative;
 }
-/* End header */
 
-/* Thumbnail */
+/* Thêm hiệu ứng khi hover vào mục menu */
+.header .inner-menu > ul > li > a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 5px 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.header .inner-menu > ul > li > a:hover {
+    color: #007bff; /* Màu xanh khi hover */
+    border-bottom: 2px solid #007bff; /* Đường gạch chân nổi bật khi hover */
+}
+
+/* Thêm khoảng cách cho mục menu cuối */
+.header .inner-menu > ul > li:last-child {
+    margin-right: 0;
+}
+/* END header */
+
+
+/* START Thumbnail */
 .thumbnail {
-    max-width: 250px;
-    max-height: 100%;
-}
-/* End Thumbnail Client*/
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px; /* Bo tròn các góc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng mượt mà */
 
-/* Start footer */
+}
+
+/* Hiệu ứng phóng to và tăng đổ bóng khi hover */
+.thumbnail:hover {
+    transform: scale(1.05); /* Phóng to nhẹ */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Tăng đổ bóng */
+}
+/* END Thumbnail Client */
+
+
+/* START Footer */
 .footer {
     background-color: #333;
     color: #ddd;
     text-align: center;
-    padding: 10px;   
+    padding: 20px 10px; /* Tăng padding để tạo khoảng trống */
+    font-size: 14px; /* Giảm kích thước chữ để phù hợp với footer */
 }
-/* End footer */
 
+/* Thiết lập các liên kết trong footer */
+.footer a {
+    color: #ddd;
+    text-decoration: none;
+    margin: 0 10px; /* Khoảng cách giữa các liên kết */
+    transition: color 0.3s ease; /* Hiệu ứng chuyển màu khi hover */
+}
+
+/* Hiệu ứng hover cho liên kết */
+.footer a:hover {
+    color: #ffffff; /* Đổi màu khi hover */
+}
+
+/* Phân cách giữa các nội dung */
+.footer hr {
+    border: 0;
+    border-top: 1px solid #555; /* Đường phân cách mỏng và sáng hơn */
+    margin: 15px auto;
+    width: 80%; /* Chiều rộng đường phân cách nhỏ hơn chiều rộng footer */
+}
+
+/* Thiết lập phần nội dung ở footer khi màn hình nhỏ hơn */
+@media (max-width: 768px) {
+    .footer {
+        font-size: 12px;
+    }
+
+    .footer a {
+        display: block; /* Chuyển các liên kết sang dòng mới */
+        margin: 5px 0;
+    }
+}
+/* END footer */
+
+
+/* Box Head - Tiêu đề sản phẩm */
 .box-head {
     color: #237824;
+    font-weight: bold;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
+/* Product Item */
 .product-item {
     border: 1px solid #ddd;
     border-radius: 20px;
     text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.product-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Inner Title - Định dạng tiêu đề sản phẩm */
 .inner-content h3.inner-title {
-    color: #7B2E52;
+    margin: 10px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    color: #0056b3; /* Màu xanh lam đậm cho tiêu đề */
+    transition: color 0.3s ease; /* Hiệu ứng chuyển đổi màu mượt mà khi hover */
 }
 
+.inner-content h3.inner-title a {
+    text-decoration: none; /* Bỏ gạch chân */
+    color: inherit; /* Sử dụng màu từ phần tử cha */
+}
+
+.inner-content h3.inner-title a:hover {
+    color: #237824; /* Đổi màu xanh lá khi hover */
+    text-decoration: underline; /* Gạch chân khi hover */
+}
+
+
+/* Inner Price New - Giá mới */
 .inner-content .inner-price-new {
     display: inline-block;
-    background-color: green;
-    color: #ddd;
+    background-color: #237824;
+    color: #ffffff;
     border-radius: 20px;
-    padding: 0px 50px;
+    padding: 5px 20px;
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Inner Price Old - Giá gốc màu vàng */
+.inner-content .inner-price-old {
+    color: #ffaa00;
+    font-size: 0.9em;
+    text-decoration: line-through;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Inner Discount - % giảm giá màu đỏ */
+.inner-content .inner-discount {
+    color: #ff0000;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+
+
+/* START sub-menu */
+.sub-menu {
+    position: relative;
+    z-index: 999;
+}
+
+.sub-menu ul {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 180px;
+    display: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.sub-menu ul li {
+    position: relative;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.sub-menu ul li:last-child {
+    border-bottom: none;
+}
+
+/* Hiển thị menu con khi hover vào sub-menu */
+.sub-menu:hover > ul {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.sub-menu ul li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.sub-menu ul li a:hover {
+    background-color: #f8f8f8;
+    color: #000;
+}
+
+/* Hiển thị menu con cấp tiếp theo khi hover */
+.sub-menu ul li ul {
+    right: 100%;
+    top: 0;
+    display: none;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.sub-menu ul li:hover > ul {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+/* END sub-menu */
 
 
