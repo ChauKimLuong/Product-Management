@@ -59,6 +59,28 @@
 }
 /* END header */
 
+/* START Nổi bật */
+.inner-image {
+    position: relative;
+}
+
+.inner-featured {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff0000; /* Màu nền đỏ nổi bật */
+    color: #ffffff; /* Màu chữ trắng */
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ để nổi bật */
+    z-index: 1; /* Đảm bảo nhãn nằm trên ảnh */
+    opacity: 0.9; /* Giảm độ trong suốt để hiển thị nổi bật */
+}
+
+/* END Nổi bật */
 
 /* START Thumbnail */
 .thumbnail {
