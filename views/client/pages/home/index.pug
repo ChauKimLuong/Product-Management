@@ -5,9 +5,16 @@ include ../../mixins/product.layout.pug
 block main
     h2 Trang chủ
 
-    .container.my-3
-        .row
-            .col-12
-                +box-head("Sản phẩm nổi bật")
-        +product-grid(featuredProducts)
-        product-grid
+    .section-products-new.my-5
+        .container
+            .row
+                .col-12
+                    +box-head("Sản phẩm nổi bật")
+            +product-grid(newFeaturedProducts)
+    
+    .section-products-new.my-5
+        .container
+            .row
+                .col-12
+                    +box-head("Sản phẩm mới nhất")
+            +product-grid(newestProducts)
