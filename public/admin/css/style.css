@@ -1,17 +1,66 @@
 .header {
     height: 56px;
-    background-color: #202020;
+    background-color: #333; /* Đổi màu nền của header */
     padding: 10px 0;
     position: sticky;
     top: 0;
     z-index: 999;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Thêm hiệu ứng bóng để header nổi bật */
 }
 
 .header .inner-logo a {
-    font-size: 24px;
+    font-size: 26px; /* Tăng kích thước chữ logo */
     font-weight: 700;
     color: #fff;
+    text-decoration: none; /* Bỏ gạch chân */
+    transition: color 0.3s, transform 0.3s; /* Hiệu ứng mượt mà khi thay đổi màu và kích thước */
 }
+
+.header .inner-logo a:hover {
+    color: #28a745; /* Đổi màu khi hover */
+    transform: scale(1.1); /* Tăng kích thước khi hover */
+}
+
+.header .inner-logo a:active {
+    color: #ffc107; /* Màu khi nhấn vào */
+}
+
+.header .btn {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 12px;
+    margin-left: 10px; /* Tạo khoảng cách giữa hai nút */
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s; /* Hiệu ứng mượt khi hover và nhấn */
+}
+
+.header .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+.header .btn-primary:hover {
+    background-color: #0056b3; /* Màu nền khi hover */
+    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}
+
+.header .btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+}
+
+.header .btn-danger:hover {
+    background-color: #c82333; /* Màu nền khi hover */
+    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}
+
+.header .btn:active {
+    transform: scale(0.95); /* Hiệu ứng khi nhấn */
+}
+
 
 .body .sider {
     width: 200px;
@@ -34,15 +83,42 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    /* text-align: center; */
+    background-color: #333; /* Màu nền của menu */
+}
+
+.sider .inner-menu ul li {
+    border-bottom: 1px solid #444; /* Đổi màu viền giữa các mục */
+    transition: transform 0.3s ease; /* Hiệu ứng mượt mà khi thay đổi kích thước */
+}
+
+.sider .inner-menu ul li:last-child {
+    border-bottom: none; /* Loại bỏ viền dưới cùng */
 }
 
 .sider .inner-menu ul li a {
     color: #fff;
     display: block;
-    padding: 6px 10px;
-    border-bottom: 1px solid #515151;
+    padding: 10px 15px; /* Khoảng cách padding */
+    font-family: Arial, sans-serif; /* Kiểu chữ */
+    font-size: 14px; /* Kích thước chữ */
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s; /* Hiệu ứng mượt mà khi thay đổi màu */
 }
+
+.sider .inner-menu ul li:hover {
+    transform: scale(1.1); /* Tăng kích thước khi hover */
+}
+
+.sider .inner-menu ul li a:hover {
+    background-color: #555; /* Đổi màu nền khi hover */
+    color: #ddd; /* Đổi màu chữ khi hover */
+}
+
+.sider .inner-menu ul li a.active {
+    background-color: #007bff; /* Màu nền cho mục đang chọn */
+    color: #fff; /* Màu chữ cho mục đang chọn */
+}
+
 
 /* Show Alert*/
 [show-alert] {

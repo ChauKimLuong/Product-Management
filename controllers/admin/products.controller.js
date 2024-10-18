@@ -29,7 +29,7 @@ module.exports.index = async (req, res) => {
     const countProduct = await Product.countDocuments(find);
     let objectPagination = paginationHelper(
         {
-            limitItems: 4,
+            limitItems: 5,
             currentPage: 1,
             skip: 0,
         },
@@ -72,6 +72,7 @@ module.exports.index = async (req, res) => {
             product.lastUpdaterFullName = lastUpdater.fullName
         }
     }
+
 
     res.render("admin/pages/products/index.pug", {
         pageTitle: "Trang sản phẩm",
@@ -197,6 +198,11 @@ module.exports.create = async (req, res) => {
 
 // [POST] /admin/products/create
 module.exports.createPost = async (req, res) => {
+    const permissions = res.locals.role.permissions
+    if (!permissions.includes("products_create")) {
+        return;
+    }
+
     req.body.price = parseInt(req.body.price);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);
