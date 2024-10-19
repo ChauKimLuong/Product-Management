@@ -10,7 +10,7 @@ module.exports.index = async (req, res) => {
         status: "active",
     }).limit(3)
 
-    const newFeaturedProducts = productHelper.newProductPrice(featuredProducts)
+    const newFeaturedProducts = productHelper.newProductsPrice(featuredProducts)
 // Sản phầm nổi bật
 
 // Sản phầm nới nhất
@@ -22,7 +22,7 @@ module.exports.index = async (req, res) => {
     .sort({ position: -1 })
     .limit(4)
 
-    const newestProductsPrice = productHelper.newProductPrice(newestProducts)
+    const newestProductsPrice = productHelper.newProductsPrice(newestProducts)
 // Sản phầm nới nhất
 
     res.render("client/pages/home/index", {
