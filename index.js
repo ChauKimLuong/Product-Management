@@ -4,6 +4,23 @@ const app = express();
 
 const path = require('path');
 
+
+// Middleware để chặn /json/version và /json/list trước khi chúng được log
+app.use((req, res, next) => {
+    if (req.url.includes('/json/version') || req.url.includes('/json/list')) {
+        // console.log(`Blocked request to ${req.url}`);
+        return res.status(404).send('Request blocked');
+    }
+    next();
+});
+
+// Log tất cả các request
+// app.use((req, res, next) => {
+//     console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+//     next();
+// });
+
+
 // Method-Override
 const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
