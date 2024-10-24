@@ -1,3 +1,5 @@
+include ../mixins/alert.pug
+
 doctype html 
 
 html
@@ -10,13 +12,14 @@ html
 
 
     body 
+        +alert-success(5000)
+
         include ../partials/header.pug
 
         block main 
 
         include ../partials/footer.pug
 
-        script(src="/admin/js/script.js") 
         script(src="/js/script.js")
 
         script(src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p")
