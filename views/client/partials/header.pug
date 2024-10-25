@@ -8,7 +8,7 @@ header.header
                     a(href="/")
                         img(src="/images/arisu.jpg" height="50px" alt="Arisu Image")
 
-            .col-5 
+            .col-5
                 form(action="/search" method="GET")
                     .form-group.d-flex.mb-0
                         input(
@@ -43,3 +43,7 @@ header.header
                                 //-                     a(href="/products/slug-1-2-2") Mục 1 - 2 - 2
                                 //- li
                                 //-     a(href="/products/slug-2") Mục 2
+                        li
+                            a(href="/#")
+                                i(class="fa fa-shopping-cart") 
+                                |  Giỏ hàng(#{miniCart ? miniCart.totalQuantity : 0})
