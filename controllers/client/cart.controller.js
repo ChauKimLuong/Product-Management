@@ -5,6 +5,7 @@ const productHelper = require("../../helpers/product.js");
 // [GET] /cart
 module.exports.index = async (req, res) => {
     const cart = await Cart.findOne({ _id: req.cookies.cartId });
+    console.log(cart);
     let totalPriceAll = 0;
 
     for (const product of cart.products) {
@@ -17,7 +18,7 @@ module.exports.index = async (req, res) => {
         productInfo = productInfo.toObject(); // ! Vì productInfo là tài lại Mongoose mặc định định là immutable
         productInfo = productHelper.newOneProductPrice(productInfo);
 
-        totalPrice = productInfo.newPrice * product.quantity;
+        const totalPrice = productInfo.newPrice * product.quantity;
         totalPriceAll += totalPrice;
 
         product.productInfo = productInfo;
@@ -68,5 +69,19 @@ module.exports.delete = async (req, res) => {
 
 
     req.flash("success", "Xóa sản phẩm thành công!");
+    res.redirect("back");
+};
+
+// [GET] /cart/update/:productId/:quantity
+module.exports.update = async (req, res) => {
+    const productId = req.params.productId;
+    const quantity = req.params.quantity;
+
+    await Cart.updateOne(
+        { _id: req.cookies.cartId, "products.product_id": productId }, 
+        { $set: { "products.$.quantity": quantity }},
+    );
+
+    req.flash("success", "Cập nhật sản phẩm thành công!");
     res.redirect("back");
 };
