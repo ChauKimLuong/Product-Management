@@ -26,7 +26,7 @@ module.exports.index = async (req, res) => {
 // Sản phầm nới nhất
 
     res.render("client/pages/home/index", {
-        pageTitle: "Trang ông chủ",
+        pageTitle: "Trang chủ",
         newFeaturedProducts: newFeaturedProducts,
         newestProducts: newestProductsPrice,
     })

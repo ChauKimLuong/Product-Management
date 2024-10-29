@@ -70,6 +70,7 @@
     position: fixed;
     top: 56px;
     left: 0;
+    padding-left: 0px;
 }
 
 .body .main {
