@@ -5,7 +5,7 @@ const productHelper = require("../../helpers/product.js");
 // [GET] /cart
 module.exports.index = async (req, res) => {
     const cart = await Cart.findOne({ _id: req.cookies.cartId });
-    console.log(cart);
+    // console.log(cart);
     let totalPriceAll = 0;
 
     for (const product of cart.products) {
@@ -15,7 +15,7 @@ module.exports.index = async (req, res) => {
             status: "active",
         }).select("title thumbnail price discountPercentage slug");
 
-        productInfo = productInfo.toObject(); // ! Vì productInfo là tài lại Mongoose mặc định định là immutable
+        productInfo = productInfo.toObject(); // ! Vì productInfo là Mongoose Document
         productInfo = productHelper.newOneProductPrice(productInfo);
 
         const totalPrice = productInfo.newPrice * product.quantity;
