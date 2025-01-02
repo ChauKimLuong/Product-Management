@@ -111,7 +111,6 @@ module.exports.success = async (req, res) => {
     orderObj.products = processedProducts;
     orderObj.totalPriceAll = orderObj.products.reduce((sum, item) => sum + item.totalPrice, 0);
 
-    console.log(orderObj);
 
     res.render("client/pages/checkout/success", {
         pageTitle: "Đặt hàng thành công",
