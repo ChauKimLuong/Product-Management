@@ -52,7 +52,10 @@ header.header
                                 a(href="/user/register") Đăng kí
                             li 
                                 a(href="/user/login") Đăng nhập
-                        else 
-                            li 
-                                button #{user.fullName}
+                        else
+                            li
+                                a.btn.btn-success.text-white(href=`/my-account`) #{user.fullName}
+                            li
+                                a(href="/user/logout") Đăng xuất
+
 
