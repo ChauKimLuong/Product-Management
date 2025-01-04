@@ -47,8 +47,12 @@ header.header
                             a(href="/cart")
                                 i(class="fa fa-shopping-cart") 
                                 |  Giỏ hàng(#{miniCart ? miniCart.totalQuantity : 0})
-                        li 
-                            a(href="/user/register") Đăng kí
-                        li 
-                            a(href="/user/login") Đăng nhập
+                        if (!user)
+                            li 
+                                a(href="/user/register") Đăng kí
+                            li 
+                                a(href="/user/login") Đăng nhập
+                        else 
+                            li 
+                                button #{user.fullName}
 
