@@ -7,28 +7,28 @@ block main
     .container.my-5
         .row.justify-content-center
             .col-8
-                h1.text-center Đăng nhập
+                h1.text-center Đổi mật khẩu
                 form(
-                    action=`/user/login`, 
+                    action=`/password/reset`, 
                     method="POST",
                 )
                     div(class="form-group mb-3")
-                        label(for="email") Email *
-                        input(
-                            type="email", 
-                            class="form-control", 
-                            id="email", 
-                            name="email", 
-                            required
-                        )
-
-                    div(class="form-group mb-3")
-                        label(for="password") Mật khẩu
+                        label(for="password") Mật khẩu *
                         input(
                             type="password", 
                             class="form-control", 
                             id="password", 
-                            name="password", 
+                            name="password",
+                            required
+                        )
+
+                    div(class="form-group mb-3")
+                        label(for="confirm") Xác nhận mật khẩu *
+                        input(
+                            type="password", 
+                            class="form-control", 
+                            id="confirm", 
+                            name="confirm", 
                             required
                         )
 
@@ -36,7 +36,6 @@ block main
                         button(
                             type="submit"
                             class="btn btn-primary"
-                        ) Đăng nhập
-                a(href="/password/forgot") Quên mật khẩu?
+                        ) Xác nhận
 
         

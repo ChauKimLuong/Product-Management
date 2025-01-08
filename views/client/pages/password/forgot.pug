@@ -7,9 +7,9 @@ block main
     .container.my-5
         .row.justify-content-center
             .col-8
-                h1.text-center Đăng nhập
+                h1.text-center Lấy lại Mật khẩu
                 form(
-                    action=`/user/login`, 
+                    action=`/password/forgot`, 
                     method="POST",
                 )
                     div(class="form-group mb-3")
@@ -22,21 +22,10 @@ block main
                             required
                         )
 
-                    div(class="form-group mb-3")
-                        label(for="password") Mật khẩu
-                        input(
-                            type="password", 
-                            class="form-control", 
-                            id="password", 
-                            name="password", 
-                            required
-                        )
-
                     div(class="form-group d-flex justify-content-center")
                         button(
                             type="submit"
                             class="btn btn-primary"
-                        ) Đăng nhập
-                a(href="/password/forgot") Quên mật khẩu?
+                        ) Gửi mã xác nhận
 
         
