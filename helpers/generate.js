@@ -8,3 +8,14 @@ module.exports.generateRandomString = (length) => {
     
     return result;
 }
+
+module.exports.generateRandomNumber = (length) => {
+    const characters = "1234567890";
+    let result = "";
+
+    while (length--){
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+
+    return result;
+}

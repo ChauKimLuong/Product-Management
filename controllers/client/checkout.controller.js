@@ -82,21 +82,38 @@ module.exports.order = async (req, res) => {
         products: products,
     })
 
-    order.save();
+    await order.save();
 
     await Cart.updateOne(
         { _id: cartId }, 
         { products: []}
     )
 
-    res.redirect("back")
+    res.redirect(`/checkout/success/${order._id}`)
 }
 
-// [GET] /success/:orderId
+// [GET] /checkout/success/:orderId
 module.exports.success = async (req, res) => {
-    
+    const orderId = req.params.orderId;
+    const order = await Order.findOne({ _id: orderId });
+    const orderObj = order.toObject();
+
+    const processedProducts = await Promise.all((orderObj.products.map(async (product) => {
+        const productInfo = await Product.findOne({ _id: product.product_id }).select("title thumbnail");
+
+        product.productInfo = productInfo;
+        product = productHelper.newOneProductPrice(product);
+        product.totalPrice = product.quantity * product.newPrice;
+
+        return product;
+    })))
+
+    orderObj.products = processedProducts;
+    orderObj.totalPriceAll = orderObj.products.reduce((sum, item) => sum + item.totalPrice, 0);
+
 
     res.render("client/pages/checkout/success", {
-        pageTitle: "Thanh toán thành công",
+        pageTitle: "Đặt hàng thành công",
+        order: orderObj,
     })
 }

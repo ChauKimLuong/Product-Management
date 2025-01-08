@@ -3,12 +3,12 @@ include ../mixins/sub-menu.pug
 header.header 
     .container 
         .row.align-items-center
-            .col-3 
+            .col-2
                 .inner-logo    
                     a(href="/")
                         img(src="/images/arisu.jpg" height="50px" alt="Arisu Image")
 
-            .col-5
+            .col-4
                 form(action="/search" method="GET")
                     .form-group.d-flex.mb-0
                         input(
@@ -19,7 +19,7 @@ header.header
                             value=keyword
                         )
                         button.btn.btn-primary(type=submit) Tìm
-            .col-4
+            .col-6
                 .inner-menu
                     ul
                         li
@@ -47,3 +47,17 @@ header.header
                             a(href="/cart")
                                 i(class="fa fa-shopping-cart") 
                                 |  Giỏ hàng(#{miniCart ? miniCart.totalQuantity : 0})
+                        if (!user)
+                            li 
+                                a(href="/user/register") Đăng kí
+                            li 
+                                a(href="/user/login") Đăng nhập
+                        else
+                            li
+                                a.btn.btn-success.text-white(href=`/my-account`) #{user.fullName}
+                            li
+                                a(href="/user/logout") Đăng xuất 
+
+                
+
+
