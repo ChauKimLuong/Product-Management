@@ -1,4 +1,5 @@
 const User = require("../../models/user.model")
+const Cart = require("../../models/cart.model")
 const productHelper = require("../../helpers/product.js")
 const md5 = require("md5")
 
@@ -23,6 +24,8 @@ module.exports.registerPost = async (req, res) => {
     
     const user = new User(req.body);
     await user.save();
+
+    await Cart.updateOne({ _id: req.cookies.cartId }, { user_id: user._id });
 
     res.cookie("tokenUser", user.tokenUser);
     res.redirect("/");
@@ -52,6 +55,8 @@ module.exports.loginPost = async (req, res) => {
         return;
     }
 
+
+
     res.cookie("tokenUser", user.tokenUser);
     res.redirect("/");
     req.flash("success", "Đăng nhập thành công!");
@@ -60,5 +65,14 @@ module.exports.loginPost = async (req, res) => {
 // [GET] /user/logout
 module.exports.logout = (req, res) => {
     res.clearCookie("tokenUser");
+    res.clearCookie("cartId");
     res.redirect("/");
+}
+
+
+// [GET] /user/info
+module.exports.info = (req, res) => {
+    res.render("client/pages/user/info", {
+        pageTitle: "Thông tin cá nhân",
+    })
 }
