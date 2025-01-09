@@ -55,7 +55,13 @@ module.exports.loginPost = async (req, res) => {
         return;
     }
 
-
+    //! Kiểm tra xem trong giỏ hàng đã có userId chưa
+    const cart = await Cart.findOne({ user_id: user._id });
+    if (!cart){
+        await Cart.updateOne({ _id: req.cookies.cartId }, { user_id: user._id });
+    } else {
+        res.cookie("cartId", `${cart._id}`);
+    }
 
     res.cookie("tokenUser", user.tokenUser);
     res.redirect("/");
