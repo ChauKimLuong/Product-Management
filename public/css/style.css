@@ -102,46 +102,78 @@
 
 
 /* START Footer */
+/* Footer tổng thể */
 .footer {
-    background-color: #333;
-    color: #ddd;
-    text-align: center;
-    padding: 20px 10px; /* Tăng padding để tạo khoảng trống */
-    font-size: 14px; /* Giảm kích thước chữ để phù hợp với footer */
+    background-color: #333; /* Nền footer */
+    color: #ddd; /* Màu chữ và icon */
+    text-align: center; /* Canh giữa nội dung */
+    padding: 20px 10px; /* Khoảng cách trên và dưới */
+    font-size: 14px; /* Kích thước chữ */
 }
 
-/* Thiết lập các liên kết trong footer */
+/* Tiêu đề Footer */
+.footer-title {
+    font-size: 24px; /* Kích thước tiêu đề */
+    font-weight: bold;
+    margin-bottom: 15px; /* Tạo khoảng cách dưới tiêu đề */
+    color: #ddd; /* Màu tiêu đề trùng với chữ */
+}
+
+/* Các mục trong phần liên hệ */
+.footer-item {
+    display: flex; /* Hiển thị icon và nội dung trên cùng một hàng */
+    justify-content: center; /* Canh giữa */
+    align-items: center; /* Canh giữa theo chiều dọc */
+    margin: 8px 0; /* Khoảng cách giữa các dòng */
+}
+
+/* Icon trong footer */
+.footer-item i {
+    margin-right: 8px; /* Khoảng cách giữa icon và text */
+    color: #ddd; /* Màu icon trùng với màu chữ */
+    font-size: 18px; /* Kích thước icon */
+}
+
+/* Text copyright */
+.footer-text {
+    font-size: 12px; /* Nhỏ hơn text liên hệ */
+    color: #aaa; /* Màu chữ nhạt hơn để phân biệt */
+    margin-top: 20px; /* Cách biệt với phần trên */
+}
+
+/* Đường phân cách (nếu cần) */
+.footer hr {
+    border: 0;
+    border-top: 1px solid #555;
+    margin: 15px auto;
+    width: 80%;
+}
+
+/* Liên kết trong footer */
 .footer a {
-    color: #ddd;
+    color: #ddd; /* Màu chữ liên kết trùng với màu text */
     text-decoration: none;
-    margin: 0 10px; /* Khoảng cách giữa các liên kết */
-    transition: color 0.3s ease; /* Hiệu ứng chuyển màu khi hover */
+    margin: 0 10px;
+    transition: color 0.3s ease;
 }
 
 /* Hiệu ứng hover cho liên kết */
 .footer a:hover {
-    color: #ffffff; /* Đổi màu khi hover */
+    color: #ffffff;
 }
 
-/* Phân cách giữa các nội dung */
-.footer hr {
-    border: 0;
-    border-top: 1px solid #555; /* Đường phân cách mỏng và sáng hơn */
-    margin: 15px auto;
-    width: 80%; /* Chiều rộng đường phân cách nhỏ hơn chiều rộng footer */
-}
-
-/* Thiết lập phần nội dung ở footer khi màn hình nhỏ hơn */
+/* Responsive cho màn hình nhỏ */
 @media (max-width: 768px) {
     .footer {
-        font-size: 12px;
+        font-size: 12px; /* Giảm kích thước text */
     }
 
     .footer a {
-        display: block; /* Chuyển các liên kết sang dòng mới */
+        display: block; /* Liên kết xuống dòng */
         margin: 5px 0;
     }
 }
+
 /* END footer */
 
 
