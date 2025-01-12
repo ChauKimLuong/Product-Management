@@ -3,6 +3,7 @@ const router = express.Router()
 
 const controller = require("../../controllers/client/user.controller")
 const validate = require("../../validate/client/user.validate")
+const authMiddleware = require("../../middlewares/client/auth.middleware")
 
 router.get("/register", controller.register)
 
@@ -13,6 +14,8 @@ router.get("/login", controller.login)
 router.post("/login", validate.loginPost, controller.loginPost)
 
 router.get("/logout", controller.logout)
+
+router.get("/info", authMiddleware.requireAuth, controller.info)
 
 
 module.exports = router

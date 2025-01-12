@@ -5,7 +5,7 @@ const app = express();
 const path = require('path');
 
 
-// Middleware để chặn /json/version và /json/list trước khi chúng được log
+//! Middleware để chặn /json/version và /json/list trước khi chúng được log
 app.use((req, res, next) => {
     if (req.url.includes('/json/version') || req.url.includes('/json/list')) {
         // console.log(`Blocked request to ${req.url}`);
@@ -14,7 +14,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// Log tất cả các request
+//! Log tất cả các request
 // app.use((req, res, next) => {
 //     console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
 //     next();
@@ -76,5 +76,12 @@ app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 
 app.use(express.static(`${__dirname}/public`));
+
+//! 404
+app.use('*', (req, res) => {
+    res.render('client/pages/errors/404', {
+        pageTitle: '404 - Page Not Found',
+    });
+});
 
 app.listen(port, () => console.log(`Server đang chạy tại http://localhost:${port}`));

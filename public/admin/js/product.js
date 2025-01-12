@@ -53,14 +53,14 @@ if (uploadImage) {
     uploadImageInput.addEventListener("change", (event) => {
         const file = event.target.files[0];
         uploadImagePreview.src = URL.createObjectURL(file);
-
-        const buttonDeleteImage = document.querySelector("[button-delete-image]");
-        if (buttonDeleteImage) {
-            buttonDeleteImage.addEventListener("click", () => {
-                uploadImageInput.value = "";
-                uploadImagePreview.src = "";
-            });
-        }
     });
+
+    const buttonDeleteImage = document.querySelector("[button-delete-image]");
+    if (buttonDeleteImage) {
+        buttonDeleteImage.addEventListener("click", () => {
+            uploadImageInput.value = "";
+            uploadImagePreview.src = "";
+        });
+    }
 }
 // End Preview Image

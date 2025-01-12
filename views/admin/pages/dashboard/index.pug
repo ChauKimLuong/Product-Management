@@ -2,3 +2,73 @@ extends ../../layouts/default.pug
 
 block main 
     h1 Trang tổng quan 
+
+    .row.mt-4 
+        .col-12
+            .card.mb-4 
+                .card-header Thông tin tài khoản 
+                .card-body 
+                    if user.avatar 
+                        img(
+                            src=user.avatar
+                            style="height: 100px; margin-botton: 15px"
+                        )
+                    if user.fullName
+                        p Họ và tên: <b>#{user.fullName}</b>
+                    if user.email
+                        p Email: <b>#{user.email}</b>
+                    if user.phone
+                        p Số điện thoại : <b>#{user.phone}</b>
+                    if role.title
+                        p Phân quyền: <b>#{role.title}</b>
+
+        .col-6
+            .card.mb-4 
+                .card-header Danh mục sản phẩm
+                .card-body 
+                    p Số lượng: 
+                        b #{productCategorys.total}
+                    p Hoạt động: 
+                        b #{productCategorys.active}
+                    p Dừng hoạt động: 
+                        b #{productCategorys.inactive}
+
+
+        .col-6
+            .card.mb-4 
+                .card-header Sản phẩm
+                .card-body 
+                    p Số lượng: 
+                        b #{products.total}
+                    p Hoạt động: 
+                        b #{products.active}
+                    p Dừng hoạt động: 
+                        b #{products.inactive}
+
+        .col-6
+            .card.mb-4 
+                .card-header Tài khoản admin
+                .card-body 
+                    p Số lượng: 
+                        b #{accounts.total}
+                    p Hoạt động: 
+                        b #{accounts.active}
+                    p Dừng hoạt động: 
+                        b #{accounts.inactive}
+
+
+        .col-6
+            .card.mb-4 
+                .card-header Tài khoản client
+                .card-body 
+                    p Số lượng: 
+                        b #{users.total}
+                    p Hoạt động: 
+                        b #{users.active}
+                    p Dừng hoạt động: 
+                        b #{users.inactive}
+
+
+
+
+

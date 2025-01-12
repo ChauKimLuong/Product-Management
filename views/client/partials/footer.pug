@@ -1,2 +1,16 @@
-footer.footer 
-    | Copyright 2024 JinKun 
+footer.footer
+    .footer-container
+        .footer-contact
+            h3.footer-title #{setting.websiteName}
+            p.footer-item
+                i.fa-solid.fa-location-dot
+                | #{setting.address}
+            p.footer-item
+                i.fa-solid.fa-envelope
+                | #{setting.websiteEmail}
+            p.footer-item
+                i.fa-solid.fa-phone
+                | #{setting.phoneNumber}
+
+        .footer-copyright
+            p.footer-text © Copyright by #{setting.copyright}. All Rights Reserved.

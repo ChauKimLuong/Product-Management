@@ -1,0 +1,46 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main
+    +alert-error(5000)
+    +alert-success(5000)
+
+    h1.mb-4 Cài đặt
+
+    form(
+        action=`${prefixAdmin}/setting?_method=PATCH`
+        method="post"
+        enctype="multipart/form-data"
+    ) 
+        .form-group.mb-4
+            label(for="websiteName") Tên website
+            input.form-control#websiteName(type="text" name="websiteName" value=setting.websiteName || "")
+            
+        .form-group.mb-4(upload-image)
+            label(for="websiteLogo") Logo website
+            input.form-control#websiteLogo(type="file" name="websiteLogo" accept="image/*" upload-image-input)
+            button(button-delete-image type="button") X
+            image.image-preview(upload-image-preview src=setting.websiteLogo || "")
+
+
+        .form-group.mb-4
+            label(for="websiteEmail") Email website
+            input.form-control#websiteEmail(type="text" name="websiteEmail" value=setting.websiteEmail || "")
+
+        .form-group.mb-4
+            label(for="phoneNumber") Số điện thoại
+            input.form-control#phoneNumber(type="text" name="phoneNumber" value=setting.phoneNumber || "")
+        
+        .form-group.mb-4
+            label(for="address") Địa chỉ
+            input.form-control#address(type="text" name="address" value=setting.address || "")
+
+        .form-group.mb-4
+            label(for="copyright") CopyRight
+            input.form-control#copyright(type="text" name="copyright" value=setting.copyright || "")
+
+        
+        .form-group 
+            button.btn.btn-primary(type="submit") Cập nhật
+
+
