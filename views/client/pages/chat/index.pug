@@ -1,0 +1,35 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug
+
+block main
+    .container.my-3
+        .row
+            .col-12
+                +box-head(pageTitle)
+        .row 
+            .col-12   
+                .chat 
+                    .inner-body     
+                        .inner-incoming 
+                            .inner-name Em Yeu 
+                            .inner-content Qua nha em choi 
+                        .inner-outgoing 
+                            .inner-content Ok e
+                        .inner-incoming 
+                            .inner-name Em Yeu 
+                            .inner-content Nhanh nha 
+                        .inner-outgoing 
+                            .inner-content Anh den roi ne
+                        .inner-incoming 
+                            .inner-name Em Yeu 
+                            .inner-content De em ra mo cua.
+                    .inner-foot
+                        form.inner-form(action="")
+                            input(
+                                type="text"
+                                name="content" 
+                                placeholder="Nhập nội dung"
+                                required
+                            ) 
+                            button
+                                i.fa-solid.fa-paper-plane

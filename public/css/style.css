@@ -392,3 +392,111 @@
     cursor: pointer;
 }
 /* End Show Alert*/
+
+/* START Chatt*/
+/* Tổng thể container */
+.container {
+    margin-top: 3rem;
+}
+
+/* Các phần tử của chat */
+.chat {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 400px; /* Điều chỉnh chiều cao của hộp chat */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Phần hiển thị tin nhắn */
+.inner-body {
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: scroll;
+    max-height: calc(100% - 90px); /* Điều chỉnh lại cho vừa với footer */
+}
+
+.message-group {
+    margin-bottom: 10px;
+}
+
+/* Tin nhắn đến (Incoming) */
+.inner-incoming {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 30%;
+}
+
+.inner-incoming .inner-name {
+    font-weight: bold;
+    color: #333;
+}
+
+.inner-incoming .inner-content {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Tin nhắn đi (Outgoing) */
+.inner-outgoing {
+    background-color: #3b82f6;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 30%;
+    margin-left: auto;
+}
+
+.inner-outgoing .inner-content {
+    font-size: 14px;
+}
+
+/* Phần input tin nhắn */
+.inner-foot {
+    padding: 0.5rem;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #ccc;
+}
+
+.inner-form {
+    display: flex;
+    width: 100%;
+}
+
+.inner-form input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+.inner-form button {
+    background-color: #3b82f6;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.inner-form button i {
+    color: white;
+}
+
+/* Hover effects for button */
+.inner-form button:hover {
+    background-color: #2563eb;
+}
+
+/* Hover effects for input */
+.inner-form input:focus {
+    border-color: #3b82f6;
+    outline: none;
+}
+
+/* END Chatt*/
