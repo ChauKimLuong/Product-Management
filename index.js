@@ -78,13 +78,10 @@ app.set("view engine", "pug");
 
 app.use(express.static(`${__dirname}/public`));
 
-// Socket.oi
+// Socket.io
 const { Server } = require("socket.io");
 const io = new Server(server);
-
-io.on("connection", (socket) => {
-    console.log("ID nguời dùng kết nối:", socket.id);
-})
+global._io = io;
 
 
 //! 404
