@@ -1,9 +1,10 @@
 // Express
 const express = require("express");
+const http = require("http");
 const app = express();
+const server = http.createServer(app);
 
 const path = require('path');
-
 
 //! Middleware để chặn /json/version và /json/list trước khi chúng được log
 app.use((req, res, next) => {
@@ -77,6 +78,15 @@ app.set("view engine", "pug");
 
 app.use(express.static(`${__dirname}/public`));
 
+// Socket.oi
+const { Server } = require("socket.io");
+const io = new Server(server);
+
+io.on("connection", (socket) => {
+    console.log("ID nguời dùng kết nối:", socket.id);
+})
+
+
 //! 404
 app.use('*', (req, res) => {
     res.render('client/pages/errors/404', {
@@ -84,4 +94,4 @@ app.use('*', (req, res) => {
     });
 });
 
-app.listen(port, () => console.log(`Server đang chạy tại http://localhost:${port}`));
+server.listen(port, () => console.log(`Server đang chạy tại http://localhost:${port}`));
