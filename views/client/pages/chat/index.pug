@@ -10,19 +10,14 @@ block main
             .col-12   
                 .chat 
                     .inner-body     
-                        .inner-incoming 
-                            .inner-name Em Yeu 
-                            .inner-content Qua nha em choi 
-                        .inner-outgoing 
-                            .inner-content Ok e
-                        .inner-incoming 
-                            .inner-name Em Yeu 
-                            .inner-content Nhanh nha 
-                        .inner-outgoing 
-                            .inner-content Anh den roi ne
-                        .inner-incoming 
-                            .inner-name Em Yeu 
-                            .inner-content De em ra mo cua.
+                        each message in messages 
+                            if (message.user_id != user.id)
+                                .inner-incoming 
+                                    .inner-name #{message.infoUser.fullName}
+                                    .inner-content #{message.content}
+                            else 
+                                .inner-outgoing
+                                    .inner-content #{message.content}
                     .inner-foot
                         form.inner-form(action="")
                             input(
