@@ -10,3 +10,8 @@ const chatSchema = new mongoose.Schema(
         deletedAt: Date,
     }, { timestamp: true }
 );
+
+
+const Chat = mongoose.model("Chat", chatSchema, "chats");
+
+module.exports = Chat;
