@@ -23,7 +23,7 @@ module.exports.index = async (req, res) => {
             //? Trả message mới nhất về CLIENT
             _io.emit("SERVER_RETURN_MESSAGE", {
                 userID: userID,
-                fullName: fullName, 
+                fullName: fullName,
                 content: content,
             });
         })

@@ -509,7 +509,7 @@
 
 /* Send Button Styling */
 .chat .inner-form button {
-    padding: 8px 12px;
+    padding: 8px 15px;
     margin-left: 5px;
     background-color: #007bff;
     border: none;
@@ -523,5 +523,33 @@
     background-color: #0056b3;
 }
 
+/* Emoji Button Styling */
+.chat .button-emoji-icon {
+    cursor: pointer;
+    margin-left: 5px;
+    margin-top: 7px;
+    padding: 5px;
+}
 
-/* END Chatt*/
+/* Emoji Icon Styling */
+.chat .button-emoji-icon i {
+    font-size: 24px;
+    color: #0d6fd9;
+}
+
+/* END CHAT*/
+
+/* EMOJI ICON CHAT */
+/*! .tooltip:not(.show){
+    display: none;
+} */
+
+.tooltip {
+    visibility: hidden;
+}
+
+.tooltip.show {
+    visibility: visible;
+}
+
+/* END EMOJI ICON CHAT */
