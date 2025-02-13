@@ -6,7 +6,7 @@ module.exports.index = async (req, res) => {
     const userID = res.locals.user.id;
     const fullName = res.locals.user.fullName;
 
-    // Cấu hình Socket.io
+    // CẤU HÌNH Socket.io
     _io.once("connection", (socket) => {
         console.log("ID nguời dùng kết nối:", socket.id);
 
@@ -27,10 +27,21 @@ module.exports.index = async (req, res) => {
                 content: content,
             });
         })
-    })
-    // end Cấu hình Socket.io
 
-    // Lấy data từ db
+        socket.on("CLIENT_SEND_TYPING", async (status) => {
+            console.log(status);
+
+            //? Trả type về CLIENT
+            _io.emit("SERVER_RETURN_TYPING", {
+                userID: userID,
+                fullName: fullName,
+                isTyping: status,
+            });
+        })
+    })
+    // END CẤU HÌNH Socket.io
+
+    // LẤY DATA TỪ DB
     const messages = await Chat.find({ deleted: false });
 
     for (const message of messages) {
@@ -38,7 +49,7 @@ module.exports.index = async (req, res) => {
 
         message.infoUser = infoUser;
     }
-    // end Lấy data từ db
+    // END LẤY DATA TỪ DB
 
 
 

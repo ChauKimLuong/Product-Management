@@ -553,3 +553,33 @@
 }
 
 /* END EMOJI ICON CHAT */
+
+
+/* TYPING DOST */
+.inner-dots {
+    display: flex;
+    gap: 3px;
+}
+
+.inner-dots span {
+    width: 5px;
+    height: 5px;
+    background: #888;
+    border-radius: 50%;
+    animation: typing 1.5s infinite;
+}
+
+.inner-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.inner-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* END TYPING DOTS */
