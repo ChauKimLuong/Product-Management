@@ -1,6 +1,13 @@
 import * as Popper from 'https://cdn.jsdelivr.net/npm/@popperjs/core@^2/dist/esm/index.js';
 //! cdn: content delivery network: chứa mã nguồn js
 
+import { FileUploadWithPreview } from 'https://unpkg.com/file-upload-with-preview@6.1.2/dist/index.js';
+
+const upload = new FileUploadWithPreview('upload-images', {
+  multiple: true,
+  maxFileCount: 4,
+});
+
 //* CLIENT_SEND_MESSAGE
 const formSendData = document.querySelector(".chat .inner-form");
 
@@ -8,11 +15,18 @@ if (formSendData) {
   formSendData.addEventListener("submit", (e) => {
     e.preventDefault();
     const content = e.target.elements.content.value;
+    const images = upload.cachedFileArray;
 
-    if (content) {
-      socket.emit("CLIENT_SEND_MESSAGE", content);
+    if (content || images.length > 0) {
+      socket.emit("CLIENT_SEND_MESSAGE", {
+        content: content,
+        images: images,
+      });
+
       e.target.elements.content.value = "";
+      upload.resetPreviewPanel(); // Xóa ảnh sau khi gửi
       socket.emit("CLIENT_SEND_TYPING", false); //! Xử lý lỗi gửi xong vẫn còn typing
+      
     }
   });
 }
@@ -24,24 +38,60 @@ socket.on("SERVER_RETURN_MESSAGE", (message) => {
   const chatInnerBody = document.querySelector(".chat .inner-body");
   const listTyping = document.querySelector(".chat .inner-list-typing");
   const msgDiv = document.createElement("div");
+  
+  let htmlFullName = "";
+  let htmlContent = "";
+  let htmlImages = "";
 
   if (message.userID !== myID) {
     msgDiv.classList.add("inner-incoming");
-    msgDiv.innerHTML = `
-      <div class="inner-name">${message.fullName}</div>
-      <div class="inner-content">${message.content}</div>
-    `;
+    htmlFullName = `<div class="inner-name">${message.fullName}</div>`;
   } else {
     msgDiv.classList.add("inner-outgoing");
-    msgDiv.innerHTML = `
-      <div class="inner-content">${message.content}</div>
-    `;
+  } 
+
+  if (message.content){
+    htmlContent = `<div class="inner-content">${message.content}</div>`;
   }
+  
+  if (message.images.length > 0){
+    htmlImages = `<div class="inner-images">`;
+
+    for (const image of message.images) {
+      htmlImages += `
+        <img 
+          src=${image} 
+          alt=${image}
+        >
+      `
+    }
+
+    htmlImages += `</div>`;
+  }
+
+  msgDiv.innerHTML = `
+    ${htmlFullName}
+    ${htmlContent}
+    ${htmlImages}
+  `
 
   chatInnerBody.insertBefore(msgDiv, listTyping); //! Xử lý lỗi typing trên message
   chatInnerBody.scrollTop = chatInnerBody.scrollHeight;
 });
 //! END SERVER_RETURN_MESSAGE
+
+//* BUTTON UPLOAD IMAGES
+const buttonUploadImages = document.querySelector(".button-upload-images");
+if (buttonUploadImages){
+  const uploadImages = document.querySelector('[data-upload-id="upload-images"]');
+
+
+  buttonUploadImages.addEventListener("click", () => {
+    // uploadImages.classList.toggle("show"); //? Tắt do dùng hàm có sẵn
+    upload.emulateInputSelection();
+  })
+}
+//! END BUTTON UPLOAD IMAGES
 
 //* SCROLL CHAT TO BOTTOM
 const chatInnerBody_ = document.querySelector(".chat .inner-body");

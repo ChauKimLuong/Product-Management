@@ -537,7 +537,7 @@
     color: #0d6fd9;
 }
 
-/* END CHAT*/
+
 
 /* EMOJI ICON CHAT */
 /*! .tooltip:not(.show){
@@ -581,5 +581,69 @@
     0%, 100% { opacity: 0.3; }
     50% { opacity: 1; }
 }
+
+/* Upload-Image */
+.chat .button-upload-images
+{
+    cursor: pointer;
+    margin-left: 5px;
+    margin-top: 7px;
+    padding: 5px;
+}
+
+.chat .button-upload-images i {
+    font-size: 24px;
+    color: #0d6fd9;
+}
+
+/*? Tắt do dùng hàm có sẵn */
+/* [data-upload-id="upload-images"]:not(.show){
+    display: none;
+} */ 
+
+.chat .inner-preview-images {
+    position: relative;
+}
+
+.chat .inner-preview-images .label-container {
+    display: none;
+}
+
+.chat .inner-preview-images .input-container {
+    display: none;
+}
+
+.chat .inner-preview-images .image-preview {
+    height: auto;
+    padding: 0;
+    border-radius: 0;
+}
+
+.chat .inner-preview-images .image-preview-item {
+    width: 90px;
+    background-size: contain; /* Đảm bảo ảnh không bị méo */
+}
+
+/* Preview trên, Ảnh đã gửi dưới */
+
+.chat .inner-body .inner-images {
+    display: inline-block;
+}
+
+.chat .inner-body .inner-images img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background: #efefef;
+    padding: 10px;
+    margin: 0 5px 5px 0;
+    border-radius: 5px;
+}
+
+.chat .inner-body .inner-outgoing .inner-images {
+    margin-left: auto;
+    text-align: right;
+}
+
 
 /* END TYPING DOTS */
