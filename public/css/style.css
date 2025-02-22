@@ -2,7 +2,8 @@
 .header {
     border-bottom: 1px solid #ddd;
     padding: 10px 0;
-    background-color: #f8f8f8; /* Thêm nền sáng cho header */
+    background-color: #f8f8f8;
+    /* Thêm nền sáng cho header */
 }
 
 .header .inner-logo img {
@@ -16,7 +17,7 @@
     transform: scale(1.1);
 }
 
-.header .inner-menu > ul {
+.header .inner-menu>ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -28,18 +29,18 @@
 
 /* Căn giữa menu cho màn hình nhỏ hơn */
 @media (max-width: 768px) {
-    .header .inner-menu > ul {
+    .header .inner-menu>ul {
         justify-content: center;
     }
 }
 
-.header .inner-menu > ul > li {
+.header .inner-menu>ul>li {
     margin-left: 20px;
     position: relative;
 }
 
 /* Thêm hiệu ứng khi hover vào mục menu */
-.header .inner-menu > ul > li > a {
+.header .inner-menu>ul>li>a {
     text-decoration: none;
     color: #333;
     font-size: 16px;
@@ -48,15 +49,18 @@
     border-bottom: 2px solid transparent;
 }
 
-.header .inner-menu > ul > li > a:hover {
-    color: #007bff; /* Màu xanh khi hover */
-    border-bottom: 2px solid #007bff; /* Đường gạch chân nổi bật khi hover */
+.header .inner-menu>ul>li>a:hover {
+    color: #007bff;
+    /* Màu xanh khi hover */
+    border-bottom: 2px solid #007bff;
+    /* Đường gạch chân nổi bật khi hover */
 }
 
 /* Thêm khoảng cách cho mục menu cuối */
-.header .inner-menu > ul > li:last-child {
+.header .inner-menu>ul>li:last-child {
     margin-right: 0;
 }
+
 /* END header */
 
 /* START Nổi bật */
@@ -68,16 +72,21 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    background-color: #ff0000; /* Màu nền đỏ nổi bật */
-    color: #ffffff; /* Màu chữ trắng */
+    background-color: #ff0000;
+    /* Màu nền đỏ nổi bật */
+    color: #ffffff;
+    /* Màu chữ trắng */
     font-size: 0.8em;
     font-weight: bold;
     padding: 5px 10px;
     border-radius: 4px;
     text-transform: uppercase;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ để nổi bật */
-    z-index: 1; /* Đảm bảo nhãn nằm trên ảnh */
-    opacity: 0.9; /* Giảm độ trong suốt để hiển thị nổi bật */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Đổ bóng nhẹ để nổi bật */
+    z-index: 1;
+    /* Đảm bảo nhãn nằm trên ảnh */
+    opacity: 0.9;
+    /* Giảm độ trong suốt để hiển thị nổi bật */
 }
 
 /* END Nổi bật */
@@ -87,58 +96,82 @@
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 8px; /* Bo tròn các góc */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng mượt mà */
+    border-radius: 8px;
+    /* Bo tròn các góc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng nhẹ */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Hiệu ứng mượt mà */
 
 }
 
 /* Hiệu ứng phóng to và tăng đổ bóng khi hover */
 .thumbnail:hover {
-    transform: scale(1.05); /* Phóng to nhẹ */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Tăng đổ bóng */
+    transform: scale(1.05);
+    /* Phóng to nhẹ */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Tăng đổ bóng */
 }
+
 /* END Thumbnail Client */
 
 
 /* START Footer */
 /* Footer tổng thể */
 .footer {
-    background-color: #333; /* Nền footer */
-    color: #ddd; /* Màu chữ và icon */
-    text-align: center; /* Canh giữa nội dung */
-    padding: 20px 10px; /* Khoảng cách trên và dưới */
-    font-size: 14px; /* Kích thước chữ */
+    background-color: #333;
+    /* Nền footer */
+    color: #ddd;
+    /* Màu chữ và icon */
+    text-align: center;
+    /* Canh giữa nội dung */
+    padding: 20px 10px;
+    /* Khoảng cách trên và dưới */
+    font-size: 14px;
+    /* Kích thước chữ */
 }
 
 /* Tiêu đề Footer */
 .footer-title {
-    font-size: 24px; /* Kích thước tiêu đề */
+    font-size: 24px;
+    /* Kích thước tiêu đề */
     font-weight: bold;
-    margin-bottom: 15px; /* Tạo khoảng cách dưới tiêu đề */
-    color: #ddd; /* Màu tiêu đề trùng với chữ */
+    margin-bottom: 15px;
+    /* Tạo khoảng cách dưới tiêu đề */
+    color: #ddd;
+    /* Màu tiêu đề trùng với chữ */
 }
 
 /* Các mục trong phần liên hệ */
 .footer-item {
-    display: flex; /* Hiển thị icon và nội dung trên cùng một hàng */
-    justify-content: center; /* Canh giữa */
-    align-items: center; /* Canh giữa theo chiều dọc */
-    margin: 8px 0; /* Khoảng cách giữa các dòng */
+    display: flex;
+    /* Hiển thị icon và nội dung trên cùng một hàng */
+    justify-content: center;
+    /* Canh giữa */
+    align-items: center;
+    /* Canh giữa theo chiều dọc */
+    margin: 8px 0;
+    /* Khoảng cách giữa các dòng */
 }
 
 /* Icon trong footer */
 .footer-item i {
-    margin-right: 8px; /* Khoảng cách giữa icon và text */
-    color: #ddd; /* Màu icon trùng với màu chữ */
-    font-size: 18px; /* Kích thước icon */
+    margin-right: 8px;
+    /* Khoảng cách giữa icon và text */
+    color: #ddd;
+    /* Màu icon trùng với màu chữ */
+    font-size: 18px;
+    /* Kích thước icon */
 }
 
 /* Text copyright */
 .footer-text {
-    font-size: 12px; /* Nhỏ hơn text liên hệ */
-    color: #aaa; /* Màu chữ nhạt hơn để phân biệt */
-    margin-top: 20px; /* Cách biệt với phần trên */
+    font-size: 12px;
+    /* Nhỏ hơn text liên hệ */
+    color: #aaa;
+    /* Màu chữ nhạt hơn để phân biệt */
+    margin-top: 20px;
+    /* Cách biệt với phần trên */
 }
 
 /* Đường phân cách (nếu cần) */
@@ -151,7 +184,8 @@
 
 /* Liên kết trong footer */
 .footer a {
-    color: #ddd; /* Màu chữ liên kết trùng với màu text */
+    color: #ddd;
+    /* Màu chữ liên kết trùng với màu text */
     text-decoration: none;
     margin: 0 10px;
     transition: color 0.3s ease;
@@ -165,11 +199,13 @@
 /* Responsive cho màn hình nhỏ */
 @media (max-width: 768px) {
     .footer {
-        font-size: 12px; /* Giảm kích thước text */
+        font-size: 12px;
+        /* Giảm kích thước text */
     }
 
     .footer a {
-        display: block; /* Liên kết xuống dòng */
+        display: block;
+        /* Liên kết xuống dòng */
         margin: 5px 0;
     }
 }
@@ -207,18 +243,24 @@
     font-size: 1.2em;
     font-weight: bold;
     text-align: center;
-    color: #0056b3; /* Màu xanh lam đậm cho tiêu đề */
-    transition: color 0.3s ease; /* Hiệu ứng chuyển đổi màu mượt mà khi hover */
+    color: #0056b3;
+    /* Màu xanh lam đậm cho tiêu đề */
+    transition: color 0.3s ease;
+    /* Hiệu ứng chuyển đổi màu mượt mà khi hover */
 }
 
 .inner-content h3.inner-title a {
-    text-decoration: none; /* Bỏ gạch chân */
-    color: inherit; /* Sử dụng màu từ phần tử cha */
+    text-decoration: none;
+    /* Bỏ gạch chân */
+    color: inherit;
+    /* Sử dụng màu từ phần tử cha */
 }
 
 .inner-content h3.inner-title a:hover {
-    color: #237824; /* Đổi màu xanh lá khi hover */
-    text-decoration: underline; /* Gạch chân khi hover */
+    color: #237824;
+    /* Đổi màu xanh lá khi hover */
+    text-decoration: underline;
+    /* Gạch chân khi hover */
 }
 
 
@@ -289,7 +331,7 @@
 }
 
 /* Hiển thị menu con khi hover vào sub-menu */
-.sub-menu:hover > ul {
+.sub-menu:hover>ul {
     display: block;
     opacity: 1;
     transform: translateY(0);
@@ -317,11 +359,12 @@
     transform: translateX(-10px);
 }
 
-.sub-menu ul li:hover > ul {
+.sub-menu ul li:hover>ul {
     display: block;
     opacity: 1;
     transform: translateX(0);
 }
+
 /* END sub-menu */
 
 
@@ -347,6 +390,7 @@
     font-size: 24px;
     margin-bottom: 10px;
 }
+
 .product-detail .inner-price-old {
     color: #999;
     font-size: 20px;
@@ -375,11 +419,13 @@
     from {
         right: 15px;
     }
+
     to {
         right: -100%;
         display: none;
     }
 }
+
 [show-alert] [close-alert] {
     background-color: #fffcff;
     display: inline-block;
@@ -391,112 +437,213 @@
     border-radius: 50%;
     cursor: pointer;
 }
+
 /* End Show Alert*/
 
 /* START Chatt*/
-/* Tổng thể container */
-.container {
-    margin-top: 3rem;
-}
-
-/* Các phần tử của chat */
+/* Chat Container */
 .chat {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    overflow: hidden;
-    height: 400px; /* Điều chỉnh chiều cao của hộp chat */
     display: flex;
     flex-direction: column;
-}
-
-/* Phần hiển thị tin nhắn */
-.inner-body {
-    flex-grow: 1;
-    padding: 1rem;
-    overflow-y: scroll;
-    max-height: calc(100% - 90px); /* Điều chỉnh lại cho vừa với footer */
-}
-
-.message-group {
-    margin-bottom: 10px;
-}
-
-/* Tin nhắn đến (Incoming) */
-.inner-incoming {
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 10px;
-    max-width: 30%;
-}
-
-.inner-incoming .inner-name {
-    font-weight: bold;
-    color: #333;
-}
-
-.inner-incoming .inner-content {
-    font-size: 14px;
-    color: #555;
-}
-
-/* Tin nhắn đi (Outgoing) */
-.inner-outgoing {
-    background-color: #3b82f6;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    max-width: 30%;
-    margin-left: auto;
-}
-
-.inner-outgoing .inner-content {
-    font-size: 14px;
-}
-
-/* Phần input tin nhắn */
-.inner-foot {
-    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid #ccc;
+    height: 500px;
+    /* Adjust height as needed */
 }
 
-.inner-form {
-    display: flex;
-    width: 100%;
+/* Chat Messages Area */
+.chat .inner-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #f5f5f5;
 }
 
-.inner-form input {
-    flex-grow: 1;
+/* Incoming Message Styling */
+.chat .inner-incoming {
+    margin-bottom: 10px;
+    max-width: 70%;
+    background-color: #e2ffc7;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 5px;
+    clear: both;
+}
+
+/* Outgoing Message Styling */
+.chat .inner-outgoing {
+    margin-bottom: 10px;
+    max-width: 70%;
+    background-color: #47CAFF;
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: auto;
+    clear: both;
+}
+
+/* Sender Name (for incoming messages) */
+.chat .inner-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Chat Input Footer */
+.chat .inner-foot {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background-color: #f0f0f0;
+}
+
+/* Chat Form Layout */
+.chat .inner-form {
+    display: flex;
+}
+
+/* Input Field Styling */
+.chat .inner-form input[type="text"] {
+    flex: 1;
+    padding: 8px;
     border: 1px solid #ccc;
-    margin-right: 10px;
+    border-radius: 4px;
 }
 
-.inner-form button {
-    background-color: #3b82f6;
+/* Send Button Styling */
+.chat .inner-form button {
+    padding: 8px 15px;
+    margin-left: 5px;
+    background-color: #007bff;
     border: none;
-    padding: 10px;
-    border-radius: 50%;
+    color: #fff;
+    border-radius: 4px;
     cursor: pointer;
 }
 
-.inner-form button i {
-    color: white;
+/* Button Hover Effect */
+.chat .inner-form button:hover {
+    background-color: #0056b3;
 }
 
-/* Hover effects for button */
-.inner-form button:hover {
-    background-color: #2563eb;
+/* Emoji Button Styling */
+.chat .button-emoji-icon {
+    cursor: pointer;
+    margin-left: 5px;
+    margin-top: 7px;
+    padding: 5px;
 }
 
-/* Hover effects for input */
-.inner-form input:focus {
-    border-color: #3b82f6;
-    outline: none;
+/* Emoji Icon Styling */
+.chat .button-emoji-icon i {
+    font-size: 24px;
+    color: #0d6fd9;
 }
 
-/* END Chatt*/
+
+
+/* EMOJI ICON CHAT */
+/*! .tooltip:not(.show){
+    display: none;
+} */
+
+.tooltip {
+    visibility: hidden;
+}
+
+.tooltip.show {
+    visibility: visible;
+}
+
+/* END EMOJI ICON CHAT */
+
+
+/* TYPING DOST */
+.inner-dots {
+    display: flex;
+    gap: 3px;
+}
+
+.inner-dots span {
+    width: 5px;
+    height: 5px;
+    background: #888;
+    border-radius: 50%;
+    animation: typing 1.5s infinite;
+}
+
+.inner-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.inner-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* Upload-Image */
+.chat .button-upload-images
+{
+    cursor: pointer;
+    margin-left: 5px;
+    margin-top: 7px;
+    padding: 5px;
+}
+
+.chat .button-upload-images i {
+    font-size: 24px;
+    color: #0d6fd9;
+}
+
+/*? Tắt do dùng hàm có sẵn */
+/* [data-upload-id="upload-images"]:not(.show){
+    display: none;
+} */ 
+
+.chat .inner-preview-images {
+    position: relative;
+}
+
+.chat .inner-preview-images .label-container {
+    display: none;
+}
+
+.chat .inner-preview-images .input-container {
+    display: none;
+}
+
+.chat .inner-preview-images .image-preview {
+    height: auto;
+    padding: 0;
+    border-radius: 0;
+}
+
+.chat .inner-preview-images .image-preview-item {
+    width: 90px;
+    background-size: contain; /* Đảm bảo ảnh không bị méo */
+}
+
+/* Preview trên, Ảnh đã gửi dưới */
+
+.chat .inner-body .inner-images {
+    display: inline-block;
+}
+
+.chat .inner-body .inner-images img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background: #efefef;
+    padding: 10px;
+    margin: 0 5px 5px 0;
+    border-radius: 5px;
+}
+
+.chat .inner-body .inner-outgoing .inner-images {
+    margin-left: auto;
+    text-align: right;
+}
+
+
+/* END TYPING DOTS */
