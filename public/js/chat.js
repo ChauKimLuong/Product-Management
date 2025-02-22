@@ -196,3 +196,11 @@ if (inputChat) {
 }
 //! END TYPING DOTS
 
+//* IMAGES VIEWER
+const previewImages = document.querySelector('.chat .inner-body');
+
+if (previewImages) {
+  const gallery = new Viewer(previewImages);
+}
+
+//! EMD IMAGES VIEWER

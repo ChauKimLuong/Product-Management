@@ -28,7 +28,7 @@ block main
                                     if (message.images.length > 0)
                                         each image in message.images 
                                             .inner-images
-                                                img(src=image, alt=image)
+                                                img.viewer-img(src=image, alt=image)
                                     
                         .inner-list-typing
 
