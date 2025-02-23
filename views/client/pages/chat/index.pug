@@ -1,6 +1,11 @@
 extends ../../layouts/default.pug 
 include ../../mixins/box-head.pug
 
+block link
+    link(rel="stylesheet" href="https://unpkg.com/file-upload-with-preview@6.1.2/dist/style.css")
+
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.10.5/viewer.min.css")
+
 block main
     .container.my-3
         .row
@@ -50,3 +55,17 @@ block main
                                 i.fa-solid.fa-paper-plane
     .tooltip(role="tooltip")
         emoji-picker.light
+
+
+block script 
+    script(src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js")
+
+    script(type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js")
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.10.5/viewer.min.js") 
+    
+    script(src="/js/socket.io.js")
+
+    script(type="module" src="/js/chat.js")
+
+

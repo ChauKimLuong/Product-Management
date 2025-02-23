@@ -12,7 +12,7 @@ module.exports.notFriends = async (req, res) => {
 
     console.log(users);
 
-    res.render("client/pages/users/not-friends.pug", {
+    res.render("client/pages/friend/not-friends.pug", {
         pageTitle: "Danh sách người dùng",
         users: users,
     })
