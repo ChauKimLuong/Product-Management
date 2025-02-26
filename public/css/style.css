@@ -647,3 +647,74 @@
 
 
 /* END TYPING DOTS */
+
+
+/* FRIEND */
+.box-user {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    background-color: #fff;
+    max-width: 300px; /* Giới hạn chiều rộng để tránh dài quá */
+}
+
+.inner-avatar img {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #f2f2f2;
+    margin-right: 10px;
+}
+
+.inner-info {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inner-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333; /* Màu chữ đậm hơn cho dễ đọc */
+}
+
+.inner-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    opacity: 0.6;
+}
+
+/* Thêm viền cho .box-user */
+.box-user {
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.box-user [btn-cancel-friend] {
+    display: none;
+}
+
+.box-user.add [btn-add-friend] {
+    display: none;
+}
+
+.box-user.add [btn-cancel-friend] {
+    display: inline-block;
+}
+
+/* END FRIEND */

@@ -15,6 +15,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "active"
     },
+    requestList: Array,
+    respondList: Array, 
+    friendList: [
+        {
+            userId: String,
+            roomChatId: String,
+        }
+    ],
     deleted: {
         type: Boolean,
         default: false,
