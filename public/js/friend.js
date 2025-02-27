@@ -34,3 +34,22 @@ if (btnCancelFriend.length > 0){
     });
 }
 //! END HỦY YÊU CẦU KẾT BẠN
+
+
+//* TỪ CHỐI KẾT BẠN
+const btnRefuse = document.querySelectorAll("[btn-refuse]");
+
+if (btnRefuse.length > 0){
+    btnRefuse.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const clickedUserId = btn.getAttribute("btn-refuse");
+
+            const boxUser = btn.closest(".box-user");
+            boxUser.classList.toggle("refuse");
+
+
+            socket.emit("CLIEND_REFUSE_FRIEND", clickedUserId);
+        })
+    });
+}
+//! END TỪ CHỐI KẾT BẠN

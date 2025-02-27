@@ -9,6 +9,6 @@ router.get("/not-friends", controller.notFriends);
 
 router.get("/requests", controller.requests);
 
-// router.get("/responds", controller.responds);
+router.get("/responds", controller.responds);
 
 module.exports = router;

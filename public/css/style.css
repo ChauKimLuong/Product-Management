@@ -717,4 +717,20 @@
     display: inline-block;
 }
 
+.box-user.refuse [btn-accept] {
+    display: none;
+}
+
+.box-user.refuse [btn-refuse] {
+    display: none;
+}
+
+.box-user [btn-deleted] {
+    display: none;
+}
+
+.box-user.refuse [btn-deleted] {
+    display: inline-block;
+}
+
 /* END FRIEND */

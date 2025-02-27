@@ -15,8 +15,6 @@ module.exports.notFriends = async (req, res) => {
         deleted: false
     });
 
-    console.log(user);
-
     const users = await User.find({
         _id: { $nin: [...(user.requestList || []), ...(user.respondList || []), userId ]},
         status: "active", 
@@ -41,10 +39,8 @@ module.exports.requests = async (req, res) => {
         deleted: false
     });
 
-    console.log(user);
-
     const requestedUsers = await User.find({
-        _id: { $in: [...(user.requestList || []), userId ]},
+        _id: { $in: user.requestList },
         status: "active", 
         deleted: false,
     }).select("id avatar fullName")
@@ -52,5 +48,29 @@ module.exports.requests = async (req, res) => {
     res.render("client/pages/friend/requests.pug", {
         pageTitle: "Yêu cầu đã gửi",
         users : requestedUsers ,
+    })
+}
+
+module.exports.responds = async (req, res) => {
+    //? CẤU HÌNH SOCKET.IO
+    friendSocket(res);
+    //? END CẤU HÌNH SOCKET.IO
+
+    const userId = res.locals.user.id;
+    const user = await User.findOne({ 
+        _id: userId,
+        status: "active", 
+        deleted: false
+    });
+
+    const respondingUsers = await User.find({
+        _id: { $in: user.respondList },
+        status: "active", 
+        deleted: false,
+    }).select("id avatar fullName")
+
+    res.render("client/pages/friend/responds.pug", {
+        pageTitle: "Yêu cầu kết bạn",
+        users : respondingUsers ,
     })
 }
