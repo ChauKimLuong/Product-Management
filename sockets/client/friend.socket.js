@@ -20,4 +20,21 @@ module.exports = (res) => {
 
         })
     })
+
+    _io.once("connection", (socket) => {
+        socket.on("CLIEND_CANCEL_FRIEND", async (clickedUserId) => {
+            const isExist = await User.findOne({
+                _id: userId,
+                requestList: clickedUserId,
+            })
+
+            if (isExist) return;
+
+            await User.updateOne({ _id: userId }, { $push: { requestList: clickedUserId } })
+
+            await User.updateOne({ _id: clickedUserId }, { $push: { respondList: userId } })
+
+        })
+    })
 }
+
