@@ -1,7 +1,5 @@
 const User = require("../../models/user.model");
 
-const uploadToCloudinary = require("../../helpers/uploadToCloudinary")
-
 module.exports = (res) => {
     const userId = res.locals.user.id;
 
@@ -43,7 +41,6 @@ module.exports = (res) => {
                 _id: userId,
                 respondList: clickedUserId,
             })
-            console.log(clickedUserId)
 
             if (!isExist) return;
 
@@ -51,6 +48,43 @@ module.exports = (res) => {
 
             await User.updateOne({ _id: clickedUserId }, { $pull: { requestList: userId } })
 
+        })
+    })
+
+    _io.once("connection", (socket) => {
+        socket.on("CLIEND_ACCEPT_FRIEND", async (clickedUserId) => {
+            const isExist = await User.findOne({
+                _id: userId,
+                "friendList.userId": clickedUserId,
+            })
+
+            if (isExist) return;
+
+            await User.updateOne(
+                { _id: userId }, 
+                { 
+                    $push: { 
+                        friendList: {
+                            userId: clickedUserId,
+                            roomChatId: ""
+                        } 
+                    },  
+                    $pull: { respondList: clickedUserId }
+                },
+            )
+
+            await User.updateOne(
+                { _id: clickedUserId },
+                { 
+                    $push: { 
+                        friendList: {
+                            userId: userId,
+                            roomChatId: ""
+                        } 
+                    },
+                    $pull: { requestList: userId } 
+                }
+            )
         })
     })
 }

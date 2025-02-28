@@ -74,3 +74,31 @@ module.exports.responds = async (req, res) => {
         users : respondingUsers ,
     })
 }
+
+
+module.exports.friends = async (req, res) => {
+    //? CẤU HÌNH SOCKET.IO
+    friendSocket(res);
+    //? END CẤU HÌNH SOCKET.IO
+
+    const userId = res.locals.user.id;
+    const user = await User.findOne({ 
+        _id: userId,
+        status: "active", 
+        deleted: false
+    });
+
+    console.log(user)
+
+    const friendshipUsers = await User.find({
+        _id: { $in: user.friendList.map(friend => friend.userId) },
+        status: "active", 
+        deleted: false,
+    }).select("id avatar fullName")
+
+    res.render("client/pages/friend/friends.pug", {
+        pageTitle: "Danh sách bạn bè",
+        users : friendshipUsers ,
+    })
+}
+

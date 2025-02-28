@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     password: String, 
     tokenUser: {
         type: String,
-        default: generateHelper.generateRandomString(30),
+        default: () => generateHelper.generateRandomString(30),
     },
     phone: String,
     avatar: String,

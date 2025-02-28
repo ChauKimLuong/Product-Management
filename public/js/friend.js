@@ -53,3 +53,22 @@ if (btnRefuse.length > 0){
     });
 }
 //! END TỪ CHỐI KẾT BẠN
+
+
+//* ĐỒNG Ý KẾT BẠN
+const btnAccept = document.querySelectorAll("[btn-accept]");
+
+if (btnAccept.length > 0){
+    btnAccept.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const clickedUserId = btn.getAttribute("btn-accept");
+
+            const boxUser = btn.closest(".box-user");
+            boxUser.classList.toggle("accepted");
+
+
+            socket.emit("CLIEND_ACCEPT_FRIEND", clickedUserId);
+        })
+    });
+}
+//! END ĐỒNG Ý KẾT BẠN

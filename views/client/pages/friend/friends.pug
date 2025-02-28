@@ -18,7 +18,7 @@ block main
             .col-6
                 if (users.length > 0)
                     each user in users
-                        .box-user
+                        .box-user.add
                             .inner-avatar   
                                 img(
                                     src=(user.avatar || "/uploads/image.png")
@@ -26,11 +26,8 @@ block main
                                 )
                             .inner-info     
                                 .inner-name #{user.fullName}
-                                .inner-buttons 
-                                    button.btn.btn-sm.btn-primary.mr-1(btn-accept=user.id) Đồng ý
-                                    button.btn.btn-sm.btn-danger.mr-1(btn-refuse=user.id) Từ chối
-                                    button.btn.btn-sm.btn-danger.mr-1(btn-deleted disable) Đã xóa
-                                    button.btn.btn-sm.btn-success.mr-1(btn-accepted disable) Đã đồng ý
+                                .inner-buttons
+                                    button.btn.btn-sm.btn-secondary.mr-1(btn-cancel-friend=user.id) Hủy
 
 block script 
     script(src="/js/friend.js")
