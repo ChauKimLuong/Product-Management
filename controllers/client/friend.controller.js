@@ -16,7 +16,14 @@ module.exports.notFriends = async (req, res) => {
     });
 
     const users = await User.find({
-        _id: { $nin: [...(user.requestList || []), ...(user.respondList || []), userId ]},
+        _id: { 
+            $nin: [
+                ...(user.requestList || []), 
+                ...(user.respondList || []), 
+                ...(user.friendList.map(friend => friend.userId) || []),
+                userId 
+            ]
+        },
         status: "active", 
         deleted: false,
     }).select("id avatar fullName")
@@ -87,8 +94,6 @@ module.exports.friends = async (req, res) => {
         status: "active", 
         deleted: false
     });
-
-    console.log(user)
 
     const friendshipUsers = await User.find({
         _id: { $in: user.friendList.map(friend => friend.userId) },

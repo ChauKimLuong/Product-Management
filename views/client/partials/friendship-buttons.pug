@@ -6,4 +6,6 @@
 
         a.btn.btn-primary.me-2.mb-2(href="/friend/requests") Lời mời đã gửi
         
-        a.btn.btn-primary.me-2.mb-2(href="/friend/responds") Yêu cầu kết bạn
+        a.btn.btn-primary.me-2.mb-2(href="/friend/responds") 
+            | Yêu cầu kết bạn 
+            span.badge.bg-danger(badge-user-respond=user.id) #{user.respondList.length}

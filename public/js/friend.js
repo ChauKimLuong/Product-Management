@@ -72,3 +72,17 @@ if (btnAccept.length > 0){
     });
 }
 //! END ĐỒNG Ý KẾT BẠN
+
+//* SERVER_RETURN_RESPOND_LENGTH
+const badgeUserRespond = document.querySelector("[badge-user-respond]");
+
+if (badgeUserRespond){
+    socket.on("SERVER_RETURN_RESPOND_LENGTH", (userRespond) => {
+        const userId = badgeUserRespond.getAttribute("badge-user-respond");
+        
+        if (userId == userRespond.clickedUserId)
+            badgeUserRespond.innerHTML = userRespond.respondLength;
+    })
+}
+
+//! SERVER_RETURN_RESPOND_LENGTH

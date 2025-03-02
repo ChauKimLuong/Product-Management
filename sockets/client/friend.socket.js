@@ -9,13 +9,18 @@ module.exports = (res) => {
                 _id: userId,
                 requestList: clickedUserId,
             })
-
             if (isExist) return;
 
             await User.updateOne({ _id: userId }, { $push: { requestList: clickedUserId } })
-
             await User.updateOne({ _id: clickedUserId }, { $push: { respondList: userId } })
 
+            // Lầy ra respondList.length để trả về 
+            const clickedUserInfo = await User.findOne({ _id: clickedUserId });
+
+            socket.broadcast.emit("SERVER_RETURN_RESPOND_LENGTH", {
+                clickedUserId: clickedUserId,
+                respondLength: clickedUserInfo.respondList.length,
+            })
         })
     })
 
