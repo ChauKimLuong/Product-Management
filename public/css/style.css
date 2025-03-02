@@ -652,6 +652,7 @@
 /* FRIEND */
 .box-user {
     display: flex;
+    position: relative;
     align-items: center;
     padding: 10px;
     border: 1px solid #ddd;
@@ -675,6 +676,7 @@
     margin-left: 15px;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 
 .inner-name {
@@ -684,9 +686,16 @@
     color: #333; /* Màu chữ đậm hơn cho dễ đọc */
 }
 
+.inner-status {
+    position: absolute;
+    color: #16FF08;
+    top: 8px;
+    right: 8px;
+}
+
 .inner-buttons {
     display: flex;
-    gap: 5px;
+    gap: 20px;
 }
 
 .btn {

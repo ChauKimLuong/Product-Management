@@ -62,6 +62,8 @@ module.exports.loginPost = async (req, res) => {
     } else {
         res.cookie("cartId", `${cart._id}`);
     }
+    
+    await User.updateOne({ tokenUser: user.tokenUser }, { online: true });
 
     res.cookie("tokenUser", user.tokenUser);
     res.redirect("/");
@@ -69,7 +71,9 @@ module.exports.loginPost = async (req, res) => {
 }
 
 // [GET] /user/logout
-module.exports.logout = (req, res) => {
+module.exports.logout = async (req, res) => {
+    await User.updateOne({ tokenUser: req.cookies.tokenUser }, { online: false });
+
     res.clearCookie("tokenUser");
     res.clearCookie("cartId");
     res.redirect("/");
