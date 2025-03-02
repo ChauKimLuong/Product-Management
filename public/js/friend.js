@@ -167,3 +167,44 @@ if (notFriend){
     })
 }
 //! SERVER_RETURN_USER_ID
+
+
+//* SERVER_RETURN_USER_ONLINE
+const friend = document.querySelector("[friend-user-id]"); 
+
+if (friend){
+    socket.on("SERVER_RETURN_USER_ONLINE", (data) => {
+        const userOnline = document.getElementById(data.userId);
+
+        if (userOnline){
+            const div = document.createElement("div");
+            
+            div.innerHTML = `
+                <div class="inner-status online">
+                    <i class="fa-solid fa-circle"></i>
+                </div>
+            `;
+
+            userOnline.appendChild(div);
+        }
+    })
+}
+//! SERVER_RETURN_USER_ONLINE
+
+
+//* SERVER_RETURN_USER_OFFLINE
+
+if (friend){
+    socket.on("SERVER_RETURN_USER_OFFLINE", (data) => {
+        const userOffline = document.getElementById(data.userId);
+
+        if (userOffline){
+            const innerStatus = userOffline.querySelector(".online");
+
+            if (innerStatus){
+                innerStatus.parentElement.remove();
+            }
+        }
+    })
+}
+//! SERVER_RETURN_USER_OFFLINE
