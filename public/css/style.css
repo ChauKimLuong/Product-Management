@@ -717,4 +717,38 @@
     display: inline-block;
 }
 
+/*! TỪ CHỐI */
+.box-user.refuse [btn-accept] {
+    display: none;
+}
+
+.box-user.refuse [btn-refuse] {
+    display: none;
+}
+
+.box-user [btn-deleted] {
+    display: none;
+}
+
+.box-user.refuse [btn-deleted] {
+    display: inline-block;
+}
+
+/** ĐỒNG Ý */
+.box-user.accepted [btn-accept] {
+    display: none;
+}
+
+.box-user.accepted [btn-refuse] {
+    display: none;
+}
+
+.box-user [btn-accepted] {
+    display: none;
+}
+
+.box-user.accepted [btn-accepted] {
+    display: inline-block;
+}
+
 /* END FRIEND */

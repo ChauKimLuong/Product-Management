@@ -1,0 +1,36 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/box-head.pug
+
+block link 
+
+block main
+    +alert-error(5000)
+
+    .container.m
+        include ../../partials/friendship-buttons.pug 
+
+        .row
+            .col-12
+                +box-head(pageTitle)
+                
+        .row 
+            .col-6
+                if (users.length > 0)
+                    each user in users
+                        .box-user
+                            .inner-avatar   
+                                img(
+                                    src=(user.avatar || "/uploads/image.png")
+                                    alt=user.fullName
+                                )
+                            .inner-info     
+                                .inner-name #{user.fullName}
+                                .inner-buttons 
+                                    button.btn.btn-sm.btn-primary.mr-1(btn-accept=user.id) Đồng ý
+                                    button.btn.btn-sm.btn-danger.mr-1(btn-refuse=user.id) Từ chối
+                                    button.btn.btn-sm.btn-danger.mr-1(btn-deleted disable) Đã xóa
+                                    button.btn.btn-sm.btn-success.mr-1(btn-accepted disable) Đã đồng ý
+
+block script 
+    script(src="/js/friend.js")
