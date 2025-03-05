@@ -14,7 +14,7 @@ block main
             .col-12
                 +box-head(pageTitle)
                 
-        .row 
+        .row(respond-user-id=user.id)
             .col-6
                 if (users.length > 0)
                     each user in users

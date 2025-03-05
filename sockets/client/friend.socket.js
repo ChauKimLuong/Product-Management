@@ -21,6 +21,14 @@ module.exports = (res) => {
                 clickedUserId: clickedUserId,
                 respondLength: clickedUserInfo.respondList.length,
             })
+
+            // Lấy info của user trả về cho clickedUser
+            const infoUser = await User.findOne({ _id: userId }).select("fullName avatar id");
+
+            socket.broadcast.emit("SERVER_RETURN_CLICKED_INFO_USER", {
+                clickedInfoUser: clickedUserInfo,
+                infoUser: infoUser,
+            })
         })
     })
 
@@ -59,14 +67,6 @@ module.exports = (res) => {
             await User.updateOne({ _id: userId }, { $pull: { respondList: clickedUserId } })
             await User.updateOne({ _id: clickedUserId }, { $pull: { requestList: userId } })
 
-            // Lầy ra respondList.length để trả về 
-            const clickedUserInfo = await User.findOne({ _id: clickedUserId });
-
-            socket.broadcast.emit("SERVER_RETURN_RESPOND_LENGTH", {
-                clickedUserId: clickedUserId,
-                respondLength: clickedUserInfo.respondList.length,
-            })
-
         })
     })
 
@@ -104,14 +104,6 @@ module.exports = (res) => {
                     $pull: { requestList: userId } 
                 }
             )
-
-            // Lầy ra respondList.length để trả về 
-            const clickedUserInfo = await User.findOne({ _id: clickedUserId });
-
-            socket.broadcast.emit("SERVER_RETURN_RESPOND_LENGTH", {
-                clickedUserId: clickedUserId,
-                respondLength: clickedUserInfo.respondList.length,
-            })
         })
     })
 }
