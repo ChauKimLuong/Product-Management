@@ -18,7 +18,7 @@ block main
             .col-6
                 if (users.length > 0)
                     each user in users
-                        .box-user
+                        .box-user(id=user.id)
                             .inner-avatar   
                                 img(
                                     src=(user.avatar || "/uploads/image.png")
