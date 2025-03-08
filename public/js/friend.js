@@ -18,7 +18,6 @@ const acceptFriend = (button) => {
     })
 }
 
-
 //* YÊU CẦU KẾT BẠN
 const btnAddFriend = document.querySelectorAll("[btn-add-friend]");
 
@@ -100,7 +99,7 @@ if (respondUserId) {
             //! In ra lời mời
             div.classList.add("col-12");
             div.innerHTML = `
-                <div class="box-user">
+                <div class="box-user" id="${data.infoUser._id}">
                     <div class="inner-avatar">
                         <img src="${data.infoUser.avatar || '/uploads/image.png'}" alt="B">
                     </div>
@@ -129,3 +128,21 @@ if (respondUserId) {
 }
 //! SERVER_RETURN_CLICKED_INFO_USER
 
+//* SERVER_RETURN_CANCEL_FRIEND
+const user = document.querySelector("[respond-user-id]");
+
+if (user){
+    socket.on("SERVER_RETURN_CANCEL_FRIEND", (data) => {
+        const userId = user.getAttribute("respond-user-id");
+
+        if (userId === data.clickedUserInfo._id){
+            const canceledUser = document.getElementById(data.userId);
+            console.log(data.userId, canceledUser);
+
+            if (canceledUser){
+                canceledUser.remove();
+            }
+        }
+    })
+}
+//! SERVER_RETURN_CANCEL_FRIEND
