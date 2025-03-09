@@ -15,10 +15,10 @@ block main
                 +box-head(pageTitle)
                 
         .row 
-            .col-6
+            .col-6(not-friend-user-id=user.id)
                 if (users.length > 0)
                     each user in users
-                        .box-user
+                        .box-user(id=user.id)
                             .inner-avatar   
                                 img(
                                     src=(user.avatar || "/uploads/image.png")

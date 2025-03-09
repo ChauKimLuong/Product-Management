@@ -123,21 +123,24 @@ if (respondUserId) {
 
             const btnRefuse = div.querySelector("[btn-refuse]");
             refuseFriend(btnRefuse);
+
+
+            //! 1.5. Khi A gửi kết bạn cho B, danh sách người dùng của B xóa đi A
+
         }
     })
 }
 //! SERVER_RETURN_CLICKED_INFO_USER
 
 //* SERVER_RETURN_CANCEL_FRIEND
-const user = document.querySelector("[respond-user-id]");
+const respond = document.querySelector("[respond-user-id]");
 
-if (user){
+if (respond){
     socket.on("SERVER_RETURN_CANCEL_FRIEND", (data) => {
-        const userId = user.getAttribute("respond-user-id");
+        const userId = respond.getAttribute("respond-user-id");
 
-        if (userId === data.clickedUserInfo._id){
+        if (userId === data.clickedInfoUser._id){
             const canceledUser = document.getElementById(data.userId);
-            console.log(data.userId, canceledUser);
 
             if (canceledUser){
                 canceledUser.remove();
@@ -146,3 +149,21 @@ if (user){
     })
 }
 //! SERVER_RETURN_CANCEL_FRIEND
+
+//* SERVER_RETURN_USER_ID
+const notFriend = document.querySelector("[not-friend-user-id]");
+
+if (notFriend){
+    socket.on("SERVER_RETURN_USER_ID", (data) => {
+        const userId = notFriend.getAttribute("not-friend-user-id");
+
+        if (userId === data.clickedInfoUser._id){
+            const canceledUser = document.getElementById(data.userId);
+
+            if (canceledUser){
+                canceledUser.remove();
+            }
+        }
+    })
+}
+//! SERVER_RETURN_USER_ID
