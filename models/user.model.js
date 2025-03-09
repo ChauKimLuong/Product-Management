@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "active"
     },
+    online: {
+        type: Boolean,
+        default: true,
+    },
     requestList: Array,
     respondList: Array, 
     friendList: [

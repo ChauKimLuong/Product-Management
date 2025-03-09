@@ -99,7 +99,7 @@ module.exports.friends = async (req, res) => {
         _id: { $in: user.friendList.map(friend => friend.userId) },
         status: "active", 
         deleted: false,
-    }).select("id avatar fullName")
+    }).select("id avatar fullName online")
 
     res.render("client/pages/friend/friends.pug", {
         pageTitle: "Danh sách bạn bè",
