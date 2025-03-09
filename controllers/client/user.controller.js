@@ -3,6 +3,8 @@ const Cart = require("../../models/cart.model")
 const productHelper = require("../../helpers/product.js")
 const md5 = require("md5")
 
+const userSocket = require("../../sockets/client/user.socket")
+
 // [GET] /user/register
 module.exports.register = (req, res) => {
     res.render("client/pages/user/register", {
@@ -65,6 +67,9 @@ module.exports.loginPost = async (req, res) => {
     
     await User.updateOne({ tokenUser: user.tokenUser }, { online: true });
 
+    userSocket.online(user); //! Gọi user.socket.js
+
+
     res.cookie("tokenUser", user.tokenUser);
     res.redirect("/");
     req.flash("success", "Đăng nhập thành công!");
@@ -73,12 +78,12 @@ module.exports.loginPost = async (req, res) => {
 // [GET] /user/logout
 module.exports.logout = async (req, res) => {
     await User.updateOne({ tokenUser: req.cookies.tokenUser }, { online: false });
+    userSocket.offline(res.locals.user); //! Gọi user.socket.js
 
     res.clearCookie("tokenUser");
     res.clearCookie("cartId");
     res.redirect("/");
 }
-
 
 // [GET] /user/info
 module.exports.info = (req, res) => {
