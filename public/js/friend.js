@@ -124,9 +124,6 @@ if (respondUserId) {
             const btnRefuse = div.querySelector("[btn-refuse]");
             refuseFriend(btnRefuse);
 
-
-            //! 1.5. Khi A gửi kết bạn cho B, danh sách người dùng của B xóa đi A
-
         }
     })
 }
@@ -202,6 +199,7 @@ if (friend){
             const innerStatus = userOffline.querySelector(".online");
 
             if (innerStatus){
+                const boxUser = innerStatus.closest(".box-user");
                 innerStatus.parentElement.remove();
             }
         }
