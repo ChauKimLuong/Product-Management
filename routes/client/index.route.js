@@ -15,7 +15,6 @@ const settingMiddleware = require("../../middlewares/client/setting.middleware")
 const authMiddleware = require("../../middlewares/client/auth.middleware");
 const socketMiddleware = require("../../middlewares/client/socket.middleware");
 
-
 module.exports = (app) => {
     app.use(categoryMiddleware.category);
     app.use(cartMiddleware.cartId);

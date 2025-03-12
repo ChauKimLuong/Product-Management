@@ -3,14 +3,17 @@ const Chat = require("../../models/chat.model");
 const uploadToCloudinary = require("../../helpers/uploadToCloudinary")
 
 
-module.exports = (res) => {
+module.exports = (req, res) => {
     const userID = res.locals.user.id;
     const fullName = res.locals.user.fullName;
+    const chatRoomId = req.params.chatRoomId;
 
     _io.once("connection", (socket) => {
-        console.log("ID nguời dùng kết nối:", socket.id);
-    
+        // console.log("ID nguời dùng kết nối:", socket.id);
+        socket.join(chatRoomId); //* Tạo 1 phòng chat theo chatRoomId.
+
         socket.on("CLIENT_SEND_MESSAGE", async (data) => {
+
             let images = [];
     
             for (const imageBuffer of data.images) {
@@ -21,13 +24,14 @@ module.exports = (res) => {
             const chat = new Chat({
                 user_id: userID,
                 content: data.content,
-                images: images
+                images: images,
+                chatRoomId: req.params.chatRoomId,
             })
     
             await chat.save();
     
             //? Trả message mới nhất về CLIENT
-            _io.emit("SERVER_RETURN_MESSAGE", {
+            _io.to(chatRoomId).emit("SERVER_RETURN_MESSAGE", {
                 userID: userID,
                 fullName: fullName,
                 content: data.content,
@@ -37,7 +41,7 @@ module.exports = (res) => {
     
         socket.on("CLIENT_SEND_TYPING", async (status) => {
             //? Trả type về CLIENT
-            _io.emit("SERVER_RETURN_TYPING", {
+            _io.to(chatRoomId).emit("SERVER_RETURN_TYPING", {
                 userID: userID,
                 fullName: fullName,
                 isTyping: status,

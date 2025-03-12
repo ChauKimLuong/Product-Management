@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
     friendList: [
         {
             userId: String,
-            roomChatId: String,
+            chatRoomId: String,
         }
     ],
     deleted: {

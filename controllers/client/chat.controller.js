@@ -3,25 +3,28 @@ const User = require("../../models/user.model");
 
 const chatSocket = require("../../sockets/client/chat.socket")
 
-// [GET] /chat
+// [GET] /chat/:chatRoomId
 module.exports.index = async (req, res) => {
     const userID = res.locals.user.id;
     const fullName = res.locals.user.fullName;
+    const chatRoomId = req.params.chatRoomId;
 
-    // CẤU HÌNH SOCKET.IO
-    chatSocket(res);
-    // END CẤU HÌNH SOCKET.IO
+    chatSocket(req, res);      //* Cấu hình socket.io
 
-    // LẤY DATA TỪ DB
-    const messages = await Chat.find({ deleted: false });
-    console.log(messages)
+    //* Lấy data từ db
+    const messages = await Chat.find(
+        { 
+            deleted: false, 
+            chatRoomId: chatRoomId,
+        }
+    );
 
     for (const message of messages) {
         const infoUser = await User.findOne({ _id: message.user_id }).select("fullName avatar");
 
         message.infoUser = infoUser;
     }
-    // END LẤY DATA TỪ DB
+    //! Lấy data từ db
 
     res.render("client/pages/chat/index", {
         pageTitle: "Chat",

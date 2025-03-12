@@ -8,9 +8,9 @@ const chatRoomSchema = mongoose.Schema(
             type: String,
             default: "friend",
         },
-        user: [
+        users: [
             {
-                userId: string,
+                userId: String,
                 role: String,
             }
         ],
