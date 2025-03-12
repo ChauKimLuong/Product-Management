@@ -1,4 +1,6 @@
 const User = require("../../models/user.model");
+const ChatRoom = require("../../models/chatRoom.model");
+
 
 module.exports = (res) => {
     const userId = res.locals.user.id;
@@ -80,7 +82,7 @@ module.exports = (res) => {
         })
     })
 
-    _io.once("connection", (socket) => {
+    _io.once("connection", async (socket) => {
         socket.on("CLIEND_ACCEPT_FRIEND", async (clickedUserId) => {
             const isExist = await User.findOne({
                 _id: userId,
@@ -89,13 +91,27 @@ module.exports = (res) => {
 
             if (isExist) return;
 
+            const users = [
+                {
+                    userId: userId,
+                    role: "admin",
+                },
+                {
+                    userId: clickedUserId,
+                    role: "admin",
+                }
+            ]
+
+            const chatRoom = new ChatRoom({users: users});
+            await chatRoom.save();
+
             await User.updateOne(
                 { _id: userId }, 
                 { 
                     $push: { 
                         friendList: {
                             userId: clickedUserId,
-                            roomChatId: ""
+                            chatRoomId: chatRoom._id.toString(),
                         } 
                     },  
                     $pull: { respondList: clickedUserId }
@@ -108,7 +124,7 @@ module.exports = (res) => {
                     $push: { 
                         friendList: {
                             userId: userId,
-                            roomChatId: ""
+                            chatRoomId: chatRoom._id.toString(),
                         } 
                     },
                     $pull: { requestList: userId } 

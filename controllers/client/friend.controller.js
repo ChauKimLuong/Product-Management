@@ -1,4 +1,5 @@
 const User = require("../../models/user.model")
+const ChatRoom = require("../../models/chatRoom.model")
 
 const friendSocket = require("../../sockets/client/friend.socket")
 
@@ -99,7 +100,14 @@ module.exports.friends = async (req, res) => {
         _id: { $in: user.friendList.map(friend => friend.userId) },
         status: "active", 
         deleted: false,
-    }).select("id avatar fullName online")
+    }).select("id avatar fullName online friendList");
+    
+    for (const friend of friendshipUsers) {
+        const fr = friend.friendList.find(fr => fr.userId == userId); //! Tìm {user: userId, chatRoomId: .. } trong friendList của friend;
+        
+        friend.chatRoomId = fr.chatRoomId;
+    }
+
 
     res.render("client/pages/friend/friends.pug", {
         pageTitle: "Danh sách bạn bè",
