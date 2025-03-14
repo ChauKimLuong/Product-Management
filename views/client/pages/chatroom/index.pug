@@ -1,0 +1,32 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/box-head.pug
+
+block link 
+
+block main
+    +alert-error(5000)
+
+    .container.m
+        .row
+            .col-12
+                +box-head(pageTitle)
+        
+        .row.mb-3 
+            .col-12 
+                a.btn.btn-success.mr-1(href="/chatroom/create") Tạo phòng chat
+
+        .row
+            .col-3
+                .box-room
+                    .inner-avatar 
+                        img(src="https://i.pinimg.com/736x/aa/cf/f4/aacff4374bf50ed907bc1190e6383ffa.jpg" alt="avatar")
+
+                    .inner-info     
+                        .inner-name Phong A 
+                        .inner-buttons 
+                            a.btn.btn-success(href="#") Nhắn tin
+
+
+
+block script
