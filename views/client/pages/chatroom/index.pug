@@ -17,15 +17,16 @@ block main
                 a.btn.btn-success.mr-1(href="/chatroom/create") Tạo phòng chat
 
         .row
-            .col-3
-                .box-room
-                    .inner-avatar 
-                        img(src="https://i.pinimg.com/736x/aa/cf/f4/aacff4374bf50ed907bc1190e6383ffa.jpg" alt="avatar")
+            .col-2
+            each chatRoom in chatRooms
+                    .box-room
+                        .inner-avatar 
+                            img(src="https://i.pinimg.com/736x/aa/cf/f4/aacff4374bf50ed907bc1190e6383ffa.jpg" alt="avatar")
 
-                    .inner-info     
-                        .inner-name Phong A 
-                        .inner-buttons 
-                            a.btn.btn-success(href="#") Nhắn tin
+                        .inner-info     
+                            .inner-name #{chatRoom.title}
+                            .inner-buttons 
+                                a.btn.btn-success(href=`/chat/${chatRoom._id}`) Nhắn tin
 
 
 

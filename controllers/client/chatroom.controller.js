@@ -3,9 +3,15 @@ const ChatRoom = require("../../models/chatRoom.model")
 
 
 module.exports.index = async (req, res) => {
+    const userId = res.locals.user.id;
+    const chatRooms = await ChatRoom.find({
+        roomType: "group",
+        "users.userId": userId,
+    })
 
     res.render("client/pages/chatroom/index.pug", {
         pageTitle: "Nhắn tin",
+        chatRooms: chatRooms,
     })
 }
 
@@ -28,11 +34,22 @@ module.exports.create = async (req, res) => {
 
 // [POST] chatroom/create
 module.exports.createPost = async (req, res) => {
-    const usersId = req.body.usersId;
+    let usersId = req.body.usersId;
+    if (!Array.isArray(usersId)) {
+        usersId = [usersId];
+    }
     const infoUsers = [];
 
-    usersId.forEach(userId => infoUsers.push({ userId: userId, role: "user" }));
+    usersId.forEach(userId => {
+        infoUsers.push({
+            userId: userId, 
+            role: "user"
+        });
+    });
+
     infoUsers.push({ userId: res.locals.user.id, role: "admin" });
+
+    console.log(infoUsers);
 
     const chatRoom = new ChatRoom({
         title: req.body.title,
@@ -41,7 +58,6 @@ module.exports.createPost = async (req, res) => {
     });
 
     await chatRoom.save();
-
 
     res.redirect(`/chat/${chatRoom._id}`);
 }
