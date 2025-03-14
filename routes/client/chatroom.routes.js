@@ -4,5 +4,8 @@ const controller = require("../../controllers/client/chatroom.controller")
 
 router.get("/", controller.index)
 
+router.get("/create", controller.create)
+
+router.post("/create", controller.createPost)
 
 module.exports = router
