@@ -1,0 +1,33 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/box-head.pug
+
+block link 
+
+block main
+    +alert-error(5000)
+
+    .container.m
+        .row
+            .col-12
+                +box-head(pageTitle)
+        
+        .row
+            .col-12.create-chat-room
+                form(action="/chatroom/create" method="POST")
+                    .form-group
+                        label(for="title") Tiêu đề
+                        input#title.form-control(type="text" name="title" required)
+
+                    .form-group
+                        label Thêm thành viên
+                            if (friends.length > 0)
+                                each friend in friends
+                                    .form-check
+                                        input.form-check-input(type="checkbox" name="usersId" value=friend._id id=friend_id)
+                                        label.form-check-label(for=friend_id) #{friend.fullName}
+                            
+                    .form-group 
+                        button.btn.btn-success(type="submit") Tạo
+
+block script
