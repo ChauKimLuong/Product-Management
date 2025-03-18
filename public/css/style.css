@@ -1,3 +1,8 @@
+body {
+    font-family: SF Pro Display;
+}
+
+
 /* START header */
 .header {
     border-bottom: 1px solid #ddd;
